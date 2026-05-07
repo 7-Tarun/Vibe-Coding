@@ -1,0 +1,577 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    /* Background Colors */
+    --bg-primary: #FFFFFF;
+    --bg-secondary: #F3F4F6;
+    --bg-sidebar: #F9FAFB;
+
+    /* Text Colors */
+    --text-primary: #1F2937;
+    --text-secondary: #6B7280;
+    --text-light: #9CA3AF;
+
+    /* Primary Colors (Indigo Palette) */
+    --primary-main: #4F46E5;
+    --primary-light: #6366F1;
+    --primary-dark: #4338CA;
+
+    /* Status Colors */
+    --success: #10B981;
+    --warning: #F59E0B;
+    --danger: #EF4444;
+    --info: #3B82F6;
+
+    /* Borders & Shadows */
+    --border-color: #E5E7EB;
+    --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.1);
+    --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+    --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+
+    /* Spacing */
+    --spacing-xs: 0.25rem;
+    --spacing-sm: 0.5rem;
+    --spacing-md: 1rem;
+    --spacing-lg: 1.5rem;
+    --spacing-xl: 2rem;
+}
+
+/* --- Dark Mode Override --- */
+body.dark-mode {
+    /* Background Colors */
+    --bg-primary: #1F2937;
+    /* Dark grayish blue for cards */
+    --bg-secondary: #111827;
+    /* Very dark background for main area */
+    --bg-sidebar: #1F2937;
+    /* Matches primary for seamless look */
+
+    /* Text Colors */
+    --text-primary: #F9FAFB;
+    /* Off-white for high readability */
+    --text-secondary: #9CA3AF;
+    /* Light gray for secondary text */
+    --text-light: #6B7280;
+
+    /* Borders */
+    --border-color: #374151;
+    /* Dark subtle borders */
+
+    /* Note: Primary Indigo and Status colors remain the same 
+       as they provide excellent contrast on dark backgrounds */
+}
+
+
+html,
+body {
+    height: 100%;
+    width: 100%;
+    font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+    background-color: var(--bg-secondary);
+    color: var(--text-primary);
+}
+
+/* App Layout - Prevents full page scroll, keeps layout locked */
+.app-container {
+    display: flex;
+    height: 100vh;
+    overflow: hidden;
+}
+
+/* --- Sidebar Styling --- */
+.sidebar {
+    width: 260px;
+    background-color: var(--bg-primary);
+    /* Kept primary for crisp look */
+    border-right: 1px solid var(--border-color);
+    display: flex;
+    flex-direction: column;
+    box-shadow: var(--shadow-sm);
+    z-index: 10;
+}
+
+/* Header Area */
+.sidebar-header {
+    padding: var(--spacing-lg);
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-sm);
+    color: var(--primary-main);
+    font-size: 1.5rem;
+    font-weight: 700;
+    border-bottom: 1px solid var(--border-color);
+    background-color: var(--bg-sidebar);
+}
+
+.menu-toggle {
+    margin-left: auto;
+    background: none;
+    border: none;
+    color: var(--text-secondary);
+    cursor: pointer;
+    font-size: 1.2rem;
+    display: none;
+    /* Hidden on desktop, useful for mobile responsiveness later */
+}
+
+/* Navigation List */
+.sidebar-nav {
+    flex: 1;
+    /* Pushes footer to the bottom */
+    padding: 0 var(--spacing-md);
+    margin-top: var(--spacing-md);
+    overflow-y: auto;
+    /* Allows scrolling if menu gets too long */
+}
+
+.nav-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-xs);
+}
+
+.nav-item a {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-md);
+    padding: var(--spacing-sm) var(--spacing-md);
+    text-decoration: none;
+    color: var(--text-secondary);
+    font-weight: 500;
+    border-radius: 8px;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.nav-item a i {
+    font-size: 1.1rem;
+    width: 24px;
+    text-align: center;
+}
+
+/* Hover and Active States */
+.nav-item a:hover {
+    background-color: var(--bg-secondary);
+    color: var(--primary-main);
+}
+
+.nav-item.active a {
+    background-color: var(--primary-main);
+    color: #FFFFFF;
+    box-shadow: var(--shadow-md);
+}
+
+/* Footer Navigation */
+.sidebar-footer {
+    padding: var(--spacing-md);
+    border-top: 1px solid var(--border-color);
+    background-color: var(--bg-sidebar);
+}
+
+/* --- Main Content Area --- */
+.main-content {
+    flex: 1;
+    padding: var(--spacing-xl);
+    background-color: var(--bg-secondary);
+    overflow-y: auto;
+}
+
+/* --- View Switching Logic --- */
+.view-section {
+    display: none;
+    animation: fadeIn 0.4s ease-in-out;
+}
+
+.view-section.active {
+    display: block;
+}
+
+/* Smooth Fade In Animation */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* --- Dashboard Hero Section --- */
+.hero-section {
+    margin-bottom: var(--spacing-xl);
+    padding-bottom: var(--spacing-xl);
+    border-bottom: 1px solid var(--border-color);
+}
+
+.hero-subtitle {
+    font-size: 0.85rem;
+    font-weight: 700;
+    color: var(--primary-main);
+    letter-spacing: 1px;
+    margin-bottom: var(--spacing-sm);
+}
+
+.hero-title {
+    font-size: 3.5rem;
+    font-weight: 800;
+    line-height: 1.1;
+    color: var(--text-primary);
+    margin-bottom: var(--spacing-md);
+}
+
+.hero-title .highlight {
+    color: var(--primary-main);
+    /* Replaced green with your theme color */
+}
+
+.hero-desc {
+    font-size: 1.1rem;
+    color: var(--text-secondary);
+    max-width: 600px;
+}
+
+/* --- Dashboard Tools Grid --- */
+.section-label {
+    font-size: 0.85rem;
+    font-weight: 700;
+    color: var(--text-secondary);
+    letter-spacing: 1px;
+    margin-bottom: var(--spacing-md);
+}
+
+.tools-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: var(--spacing-md);
+}
+
+.tool-card {
+    background-color: var(--bg-primary);
+    border: 1px solid var(--border-color);
+    border-radius: 12px;
+    padding: var(--spacing-lg);
+    cursor: pointer;
+    transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+}
+
+.tool-card:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--shadow-lg);
+    border-color: var(--primary-light);
+}
+
+.card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: var(--spacing-md);
+}
+
+.icon-large {
+    font-size: 1.8rem;
+    color: var(--warning);
+    /* Adjust color if needed */
+}
+
+.badge {
+    font-size: 0.7rem;
+    font-weight: 700;
+    padding: 4px 8px;
+    border-radius: 4px;
+    letter-spacing: 0.5px;
+}
+
+.badge-quick {
+    background-color: rgba(16, 185, 129, 0.1);
+    color: var(--success);
+}
+
+.badge-detailed {
+    background-color: rgba(245, 158, 11, 0.1);
+    color: var(--warning);
+}
+
+.badge-advanced {
+    background-color: rgba(59, 130, 246, 0.1);
+    color: var(--info);
+}
+
+.tool-card h3 {
+    font-size: 1.25rem;
+    margin-bottom: var(--spacing-sm);
+    color: var(--text-primary);
+}
+
+.tool-card p {
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+    margin-bottom: var(--spacing-lg);
+    line-height: 1.5;
+}
+
+.calc-link {
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: var(--primary-main);
+}
+
+/* --- Forms & Input Fields --- */
+
+/* Yahan pe paste kar — style tag ke andar */
+.form-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--spacing-md);
+    margin-bottom: var(--spacing-lg);
+}
+
+.input-group {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-xs);
+}
+
+.input-group label {
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: var(--text-secondary);
+}
+
+.input-group input {
+    padding: 12px;
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    font-size: 1rem;
+    background-color: var(--bg-secondary);
+    color: var(--text-primary);
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.input-group input:focus {
+    outline: none;
+    border-color: var(--primary-main);
+    box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.1);
+}
+
+/* Remove spin buttons from number inputs - All Browsers */
+input[type="number"] {
+    -moz-appearance: textfield;
+    appearance: none;
+}
+
+/* Chrome, Safari, Edge */
+input[type="number"]::-webkit-outer-spin-button,
+input[type="number"]::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    appearance: none;
+    margin: 0;
+    display: none;
+}
+
+/* Firefox */
+input[type="number"]::-moz-number-spin-box {
+    display: none;
+}
+
+input[type="number"]::-moz-number-spin-up,
+input[type="number"]::-moz-number-spin-down {
+    display: none !important;
+}
+
+
+/* --- Buttons --- */
+.primary-btn {
+    width: 100%;
+    padding: 14px;
+    background-color: var(--primary-main);
+    color: #FFFFFF;
+    border: none;
+    border-radius: 8px;
+    font-size: 1rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: background-color 0.2s ease, transform 0.1s ease;
+}
+
+.primary-btn:hover {
+    background-color: var(--primary-dark);
+}
+
+.primary-btn:active {
+    transform: scale(0.98);
+}
+
+/* --- Result Box --- */
+.result-box {
+    margin-top: var(--spacing-xl);
+    padding: var(--spacing-md);
+    background-color: var(--bg-sidebar);
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    animation: fadeIn 0.4s ease-in-out;
+}
+
+.result-box.hidden {
+    display: none;
+}
+
+.score-value {
+    font-size: 2.5rem;
+    font-weight: 800;
+    color: var(--text-primary);
+    display: block;
+}
+
+.status-badge {
+    font-weight: 700;
+    padding: 6px 12px;
+    border-radius: 20px;
+    background-color: var(--bg-secondary);
+}
+
+/* --- Calculator Card UI (Updated for Floating Effect) --- */
+.calculator-card {
+    background-color: var(--bg-primary);
+    border: 1px solid var(--border-color);
+    border-radius: 16px;
+    /* Thoda aur smooth border radius */
+    padding: var(--spacing-xl);
+
+    /* Floating Effect ke liye shadow aur centering */
+    box-shadow: var(--shadow-lg);
+    max-width: 500px;
+    /* Width ko stretch hone se rokega */
+    margin: var(--spacing-lg) auto;
+    /* Top/Bottom margin dega aur horizontally center karega */
+}
+
+/* --- Extra styling for TDEE Form Elements --- */
+.full-width {
+    grid-column: span 2;
+    /* Ye input ko form grid ki dono columns occupy karne dega */
+}
+
+.radio-group {
+    display: flex;
+    gap: var(--spacing-lg);
+    margin-top: var(--spacing-xs);
+}
+
+.radio-group label {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 1rem;
+    color: var(--text-primary);
+    cursor: pointer;
+    font-weight: 500;
+}
+
+select {
+    padding: 12px;
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    font-size: 1rem;
+    background-color: var(--bg-secondary);
+    color: var(--text-primary);
+    cursor: pointer;
+    width: 100%;
+    transition: border-color 0.2s ease;
+}
+
+select:focus {
+    outline: none;
+    border-color: var(--primary-main);
+    box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.1);
+}
+
+/* Global Hidden Class */
+.hidden {
+    display: none;
+}
+
+/* --- Mobile Responsiveness (Breakpoints) --- */
+.mobile-header {
+    display: none;
+    /* Desktop par strictly hide rakhein */
+}
+
+@media (max-width: 768px) {
+
+    /* Mobile header ko show karein */
+    .mobile-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: var(--spacing-sm) var(--spacing-md);
+        background-color: var(--bg-primary);
+        border-bottom: 1px solid var(--border-color);
+        margin-bottom: var(--spacing-md);
+        border-radius: 8px;
+    }
+
+    .mobile-toggle {
+        background: none;
+        border: none;
+        font-size: 1.5rem;
+        color: var(--text-primary);
+        cursor: pointer;
+    }
+
+    /* Sidebar ko Off-canvas Menu banayein */
+    .sidebar {
+        position: fixed;
+        /* Flow se bahar nikal kar fixed karein */
+        top: 0;
+        left: -100%;
+        /* Default hidden (screen ke left mein) */
+        height: 100vh;
+        transition: left 0.3s ease-in-out;
+        /* Smooth slide animation */
+        box-shadow: var(--shadow-lg);
+        z-index: 50;
+        /* Sabse upar dikhane ke liye */
+    }
+
+    /* Ye class JS se add/remove hogi */
+    .sidebar.mobile-open {
+        left: 0;
+        /* View mein wapas layein */
+    }
+
+    /* Main content padding aur Grid fix */
+    .main-content {
+        padding: var(--spacing-md);
+    }
+
+    .form-grid {
+        grid-template-columns: 1fr;
+        /* 2 column input ko single column banayein */
+    }
+
+    .full-width {
+        grid-column: span 1;
+    }
+
+    .hero-title {
+        font-size: 2.2rem;
+        /* Mobile par font chota karein */
+    }
+
+    /* Dark Mode mein Logo ka color override karna */
+    body.dark-mode .logo-area,
+    body.dark-mode .sidebar-header {
+        color: var(--text-primary) !important;
+    }
+
+}
