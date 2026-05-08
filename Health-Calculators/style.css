@@ -447,6 +447,70 @@ input[type="number"]::-moz-number-spin-down {
     background-color: var(--bg-secondary);
 }
 
+/* SEO Content Styling */
+.seo-content {
+    display: flex;
+    flex-direction: column;
+    gap: 20px; /* Cards ke beech ka gap */
+    margin-top: 30px;
+}
+
+.info-card h3 {
+    margin-top: 0;
+    margin-bottom: 12px;
+    font-size: 1.2rem;
+    color: var(--primary-main);
+}
+
+.info-card p, .faq-item p {
+    font-size: 0.95rem;
+    line-height: 1.6;
+    margin-bottom: 10px;
+    color: var(--text-secondary);
+}
+
+.formula-box {
+    background-color: var(--bg-secondary);
+    padding: 15px;
+    border-radius: 8px;
+    margin: 15px 0;
+    text-align: center;
+    border: 1px dashed var(--border-color);
+}
+
+.faq-item {
+    margin-bottom: 15px;
+}
+
+.faq-item h4 {
+    margin-bottom: 5px;
+    font-size: 1rem;
+}
+
+/* Table Styling for SEO box */
+.table-responsive {
+    overflow-x: auto;
+}
+
+.seo-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 10px;
+}
+
+.seo-table th, .seo-table td {
+    padding: 12px;
+    text-align: left;
+    border-bottom: 1px solid var(--border-color);
+    color: var(--text-primary);
+}
+
+.seo-table th {
+    background-color: var(--bg-secondary);
+    font-weight: bold;
+}
+
+
 /* --- Calculator Card UI (Updated for Floating Effect) --- */
 .calculator-card {
     background-color: var(--bg-primary);

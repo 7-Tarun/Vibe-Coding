@@ -28,7 +28,6 @@
     <meta property="twitter:image" content="https://7-tarun.github.io/Vibe-Coding/Health-Calculators/preview-image.jpg">
 
     <meta name="google-site-verification" content="sG0FpgqtVcBFbpWV60vbD52rL6fxdbGvli9w5bPqiX0" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <link rel="stylesheet" href="style.css">
 </head>
@@ -90,205 +89,394 @@
 
         <main class="main-content">
 
-            <main class="main-content">
+            <div class="mobile-header">
+                <div class="logo-area" style="color: var(--primary-main); font-weight: 700; font-size: 1.25rem;">
+                    <i class="fa-solid fa-heart-pulse"></i> HealthCalc
+                </div>
+                <button id="mobile-menu-btn" class="mobile-toggle" aria-label="Open Menu">
+                    <i class="fa-solid fa-bars"></i>
+                </button>
+            </div>
 
-                <div class="mobile-header">
-                    <div class="logo-area" style="color: var(--primary-main); font-weight: 700; font-size: 1.25rem;">
-                        <i class="fa-solid fa-heart-pulse"></i> HealthCalc
-                    </div>
-                    <button id="mobile-menu-btn" class="mobile-toggle" aria-label="Open Menu">
-                        <i class="fa-solid fa-bars"></i>
-                    </button>
+            <section id="dashboard" class="view-section active">
+                <div class="hero-section">
+                    <p class="hero-subtitle">HEALTH & FITNESS TOOLS</p>
+                    <h1 class="hero-title">Know your body.<br><span class="highlight">Calculate smart.</span></h1>
+                    <p class="hero-desc">Free, accurate health calculators. No sign-up needed. Just data and
+                        insights.
+                    </p>
                 </div>
 
-                <section id="dashboard" class="view-section active">
-                    <div class="hero-section">
-                        <p class="hero-subtitle">HEALTH & FITNESS TOOLS</p>
-                        <h1 class="hero-title">Know your body.<br><span class="highlight">Calculate smart.</span></h1>
-                        <p class="hero-desc">Free, accurate health calculators. No sign-up needed. Just data and
-                            insights.
+                <div class="tools-section">
+                    <p class="section-label">AVAILABLE TOOLS</p>
+                    <div class="tools-grid">
+
+                        <div class="tool-card" data-nav="bmi">
+                            <div class="card-header">
+                                <i class="fa-solid fa-scale-balanced icon-large"></i>
+                                <span class="badge badge-quick">QUICK</span>
+                            </div>
+                            <h3>BMI Calculator</h3>
+                            <p>Body Mass Index — find out if your weight is healthy relative to your height.</p>
+                            <span class="calc-link">Calculate BMI &rarr;</span>
+                        </div>
+
+                        <div class="tool-card" data-nav="tdee">
+                            <div class="card-header">
+                                <i class="fa-solid fa-bolt icon-large"></i>
+                                <span class="badge badge-detailed">DETAILED</span>
+                            </div>
+                            <h3>TDEE Calculator</h3>
+                            <p>Total Daily Energy Expenditure — how many calories your body burns each day.</p>
+                            <span class="calc-link">Calculate TDEE &rarr;</span>
+                        </div>
+
+                        <div class="tool-card" data-nav="bodyfat">
+                            <div class="card-header">
+                                <i class="fa-solid fa-percentage icon-large"></i>
+                                <span class="badge badge-advanced">ADVANCED</span>
+                            </div>
+                            <h3>Body Fat %</h3>
+                            <p>Estimate your body fat percentage using standard body measurements.</p>
+                            <span class="calc-link">Calculate Body Fat &rarr;</span>
+                        </div>
+
+                    </div>
+                </div>
+            </section>
+
+            <section id="bmi" class="view-section hidden">
+                <div class="header-text">
+                    <h1>BMI Calculator</h1>
+                    <p>Body Mass Index - Find out if your weight is healthy relative to your height.</p>
+                </div>
+
+                <div class="calculator-card">
+                    <div class="form-grid">
+                        <div class="input-group">
+                            <label for="bmi-weight">Weight (kg)</label>
+                            <input type="number" id="bmi-weight" placeholder="e.g., 70" required>
+                        </div>
+                        <div class="input-group">
+                            <label for="bmi-height">Height (cm)</label>
+                            <input type="number" id="bmi-height" placeholder="e.g., 175" required>
+                        </div>
+                    </div>
+
+                    <button id="calc-bmi-btn" class="primary-btn">Calculate BMI</button>
+
+                    <div id="bmi-result" class="result-box hidden">
+                        <div class="result-score">
+                            <h4>Your BMI</h4>
+                            <span id="bmi-value" class="score-value">--</span>
+                        </div>
+                        <div class="result-status">
+                            <p>Status: <span id="bmi-status" class="status-badge">--</span></p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="seo-content">
+
+                    <div class="calculator-card info-card">
+                        <h3>What is BMI & How is it Calculated?</h3>
+                        <p>Body Mass Index (BMI) is a health screening test which uses height and weight measurements of
+                            an individual in order to determine the total body fat percentage. The BMI is obtained by
+                            dividing the weight in kilograms with the square of the height in meters (\(kg/m^2\)), which
+                            then classifies people according to different weight categories.
                         </p>
-                    </div>
-
-                    <div class="tools-section">
-                        <p class="section-label">AVAILABLE TOOLS</p>
-                        <div class="tools-grid">
-
-                            <div class="tool-card" data-nav="bmi">
-                                <div class="card-header">
-                                    <i class="fa-solid fa-scale-balanced icon-large"></i>
-                                    <span class="badge badge-quick">QUICK</span>
-                                </div>
-                                <h3>BMI Calculator</h3>
-                                <p>Body Mass Index — find out if your weight is healthy relative to your height.</p>
-                                <span class="calc-link">Calculate BMI &rarr;</span>
-                            </div>
-
-                            <div class="tool-card" data-nav="tdee">
-                                <div class="card-header">
-                                    <i class="fa-solid fa-bolt icon-large"></i>
-                                    <span class="badge badge-detailed">DETAILED</span>
-                                </div>
-                                <h3>TDEE Calculator</h3>
-                                <p>Total Daily Energy Expenditure — how many calories your body burns each day.</p>
-                                <span class="calc-link">Calculate TDEE &rarr;</span>
-                            </div>
-
-                            <div class="tool-card" data-nav="bodyfat">
-                                <div class="card-header">
-                                    <i class="fa-solid fa-percentage icon-large"></i>
-                                    <span class="badge badge-advanced">ADVANCED</span>
-                                </div>
-                                <h3>Body Fat %</h3>
-                                <p>Estimate your body fat percentage using standard body measurements.</p>
-                                <span class="calc-link">Calculate Body Fat &rarr;</span>
-                            </div>
-
+                        <div class="formula-box">
+                            <strong>The Metric Formula:</strong><br>
+                            <span>BMI = Weight (kg) / (Height (m) &times; Height (m))</span>
                         </div>
-                    </div>
-                </section>
-
-                <section id="bmi" class="view-section hidden">
-                    <div class="header-text">
-                        <h1>BMI Calculator</h1>
-                        <p>Body Mass Index - Find out if your weight is healthy relative to your height.</p>
+                        <p><em>Example:</em> If you weight 70 kg and are 175 cm (1.75 m) tall, your BMI is calculated as
+                            70 / (1.75 &times; 1.75) = 22.86.</p>
                     </div>
 
-                    <div class="calculator-card">
-                        <div class="form-grid">
-                            <div class="input-group">
-                                <label for="bmi-weight">Weight (kg)</label>
-                                <input type="number" id="bmi-weight" placeholder="e.g., 70" required>
-                            </div>
-                            <div class="input-group">
-                                <label for="bmi-height">Height (cm)</label>
-                                <input type="number" id="bmi-height" placeholder="e.g., 175" required>
-                            </div>
-                        </div>
-
-                        <button id="calc-bmi-btn" class="primary-btn">Calculate BMI</button>
-
-                        <div id="bmi-result" class="result-box hidden">
-                            <div class="result-score">
-                                <h4>Your BMI</h4>
-                                <span id="bmi-value" class="score-value">--</span>
-                            </div>
-                            <div class="result-status">
-                                <p>Status: <span id="bmi-status" class="status-badge">--</span></p>
-                            </div>
-                        </div>
-                    </div>
-                </section>
-
-                <section id="tdee" class="view-section hidden">
-                    <div class="header-text">
-                        <h1>TDEE Calculator</h1>
-                        <p>Total Daily Energy Expenditure - How many calories your body burns each day.</p>
-                    </div>
-                    <div class="calculator-card">
-                        <div class="form-grid">
-                            <div class="input-group full-width">
-                                <label>Gender</label>
-                                <div class="radio-group">
-                                    <label><input type="radio" name="tdee-gender" value="male" checked> Male</label>
-                                    <label><input type="radio" name="tdee-gender" value="female"> Female</label>
-                                </div>
-                            </div>
-
-                            <div class="input-group full-width">
-                                <label for="tdee-age">Age (15 - 80)</label>
-                                <input type="number" id="tdee-age" placeholder="e.g., 25" min="15" max="80" required>
-                            </div>
-                            <div class="input-group">
-                                <label for="tdee-weight">Weight (kg)</label>
-                                <input type="number" id="tdee-weight" placeholder="e.g., 70" required>
-                            </div>
-                            <div class="input-group">
-                                <label for="tdee-height">Height (cm)</label>
-                                <input type="number" id="tdee-height" placeholder="e.g., 175" required>
-                            </div>
-
-                            <div class="input-group full-width">
-                                <label for="tdee-activity">Activity Level</label>
-                                <select id="tdee-activity">
-                                    <option value="1.2">Sedentary (Little to no exercise)</option>
-                                    <option value="1.375">Lightly Active (Light exercise 1-3 days/week)</option>
-                                    <option value="1.55" selected>Moderately Active (Moderate exercise 3-5 days/week)
-                                    </option>
-                                    <option value="1.725">Very Active (Hard exercise 6-7 days/week)</option>
-                                    <option value="1.9">Extra Active (Physical job or training 2x/day)</option>
-                                </select>
-                            </div>
-                        </div>
-
-                        <button id="calc-tdee-btn" class="primary-btn">Calculate TDEE</button>
-
-                        <div id="tdee-result" class="result-box hidden"
-                            style="flex-direction: column; align-items: flex-start; gap: 10px;">
-                            <div class="result-score">
-                                <h4>Maintenance Calories</h4>
-                                <span id="tdee-value" class="score-value">--</span>
-                                <span style="font-size:1rem; color:var(--text-secondary)">kcal/day</span>
-                            </div>
-                            <p style="font-size:0.9rem; color:var(--text-secondary);">This is an estimate of how many
-                                calories your body burns every day.</p>
+                    <div class="calculator-card info-card">
+                        <h3>Standard BMI Categories</h3>
+                        <p>The World Health Organization (WHO) classifies BMI ranges as follows:</p>
+                        <div class="table-responsive">
+                            <table class="seo-table">
+                                <thead>
+                                    <tr>
+                                        <th>Category</th>
+                                        <th>BMI Range</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>Underweight</td>
+                                        <td>Less than 18.5</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Normal weight</td>
+                                        <td>18.5 - 24.9</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Overweight</td>
+                                        <td>25.0 - 29.9</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Obesity (Class I)</td>
+                                        <td>30.0 - 34.9</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Obesity (Class II & III)</td>
+                                        <td>35.0 and above</td>
+                                    </tr>
+                                </tbody>
+                            </table>
                         </div>
                     </div>
 
-                </section>
+                    <div class="calculator-card info-card">
+                        <h3>Frequently Asked Questions</h3>
 
-                <section id="bodyfat" class="view-section hidden">
-                    <div class="header-text">
-                        <h1>Body Fat Percentage</h1>
-                        <p>Estimate your body fat using the U.S. Navy Method measurements.</p>
+                        <div class="faq-item">
+                            <h4>1. Is BMI completely accurate for everyone?</h4>
+                            <p>While BMI is a useful general indicator, it has limitations. It does not distinguish
+                                between muscle and fat mass. For example, athletes or bodybuilders may have a high BMI
+                                due to heavy muscle mass, not excess body fat.</p>
+                        </div>
+
+                        <div class="faq-item">
+                            <h4>2. Does age or gender affect BMI calculations?</h4>
+                            <p>The standard adult BMI formula applies equally to men and women over the age of 20.
+                                However, for children and teenagers, BMI is interpreted differently using age- and
+                                gender-specific percentiles.</p>
+                        </div>
+
+                        <div class="faq-item">
+                            <h4>3. What is a healthy BMI for older adults?</h4>
+                            <p>For adults over 65, a slightly higher BMI (between 25 and 27) might be healthier and is
+                                sometimes associated with a lower risk of mortality and better protection against bone
+                                thinning.</p>
+                        </div>
+
+                        <div class="faq-item">
+                            <h4>4. How can I lower my BMI safely?</h4>
+                            <p>Lowering your BMI requires a consistent calorie deficit. This is best achieved through a
+                                combination of a balanced, whole-food diet, regular cardiovascular exercise, and
+                                strength training. Always consult a healthcare provider before making drastic changes.
+                            </p>
+                        </div>
+
+                        <div class="faq-item">
+                            <h4>5. Are BMI and Body Fat Percentage the same thing?</h4>
+                            <p>No. BMI is just a ratio of your height to your weight. It guesses your health status.
+                                Body Fat Percentage calculates the exact amount of fat tissue on your body, making it a
+                                much more accurate metric for true fitness.</p>
+                        </div>
                     </div>
 
-                    <div class="calculator-card">
-                        <div class="form-grid">
-                            <div class="input-group full-width">
-                                <label>Gender</label>
-                                <div class="radio-group">
-                                    <label><input type="radio" name="bf-gender" value="male" checked> Male</label>
-                                    <label><input type="radio" name="bf-gender" value="female"> Female</label>
-                                </div>
-                            </div>
 
-                            <div class="input-group">
-                                <label for="bf-height">Height (cm)</label>
-                                <input type="number" id="bf-height" placeholder="e.g., 175" required>
-                            </div>
-                            <div class="input-group">
-                                <label for="bf-neck">Neck (cm)</label>
-                                <input type="number" id="bf-neck" placeholder="At narrowest point" required>
-                            </div>
-                            <div class="input-group">
-                                <label for="bf-waist">Waist (cm)</label>
-                                <input type="number" id="bf-waist" placeholder="At navel" required>
-                            </div>
+                </div>
+            </section>
 
-                            <div id="hips-container" class="input-group hidden">
-                                <label for="bf-hips">Hips (cm)</label>
-                                <input type="number" id="bf-hips" placeholder="At widest point">
+
+            <section id="tdee" class="view-section hidden">
+                <div class="header-text">
+                    <h1>TDEE Calculator</h1>
+                    <p>Total Daily Energy Expenditure - How many calories your body burns each day.</p>
+                </div>
+
+                <div class="calculator-card">
+                    <div class="form-grid">
+                        <div class="input-group full-width">
+                            <label>Gender</label>
+                            <div class="radio-group">
+                                <label><input type="radio" name="tdee-gender" value="male" checked> Male</label>
+                                <label><input type="radio" name="tdee-gender" value="female"> Female</label>
                             </div>
                         </div>
 
-                        <button id="calc-bf-btn" class="primary-btn">Calculate Body Fat</button>
+                        <div class="input-group full-width">
+                            <label for="tdee-age">Age (15 - 80)</label>
+                            <input type="number" id="tdee-age" placeholder="e.g., 25" min="15" max="80" required>
+                        </div>
+                        <div class="input-group">
+                            <label for="tdee-weight">Weight (kg)</label>
+                            <input type="number" id="tdee-weight" placeholder="e.g., 70" required>
+                        </div>
+                        <div class="input-group">
+                            <label for="tdee-height">Height (cm)</label>
+                            <input type="number" id="tdee-height" placeholder="e.g., 175" required>
+                        </div>
 
-                        <div id="bf-result" class="result-box hidden">
-                            <div class="result-score">
-                                <h4>Body Fat</h4>
-                                <span id="bf-value" class="score-value">--</span>
-                            </div>
-                            <div class="result-status">
-                                <p>Status: <span id="bf-category" class="status-badge">--</span></p>
-                            </div>
+                        <div class="input-group full-width">
+                            <label for="tdee-activity">Activity Level</label>
+                            <select id="tdee-activity">
+                                <option value="1.2">Sedentary (Little to no exercise)</option>
+                                <option value="1.375">Lightly Active (Light exercise 1-3 days/week)</option>
+                                <option value="1.55" selected>Moderately Active (Moderate exercise 3-5 days/week)
+                                </option>
+                                <option value="1.725">Very Active (Hard exercise 6-7 days/week)</option>
+                                <option value="1.9">Extra Active (Physical job or training 2x/day)</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <button id="calc-tdee-btn" class="primary-btn">Calculate TDEE</button>
+
+                    <div id="tdee-result" class="result-box hidden"
+                        style="flex-direction: column; align-items: flex-start; gap: 10px;">
+                        <div class="result-score">
+                            <h4>Maintenance Calories</h4>
+                            <span id="tdee-value" class="score-value">--</span>
+                            <span style="font-size:1rem; color:var(--text-secondary)">kcal/day</span>
+                        </div>
+                        <p style="font-size:0.9rem; color:var(--text-secondary);">This is an estimate of how many
+                            calories your body burns every day.</p>
+                    </div>
+                </div>
+
+                <div class="seo-content">
+
+                    <div class="calculator-card info-card">
+                        <h3>What is TDEE & How is it Calculated?</h3>
+                        <p>The Total Daily Energy Expenditure (TDEE) refers to the total number of calories that one’s
+                            body expends throughout a day. TDEE involves the combination of the basal metabolic rate
+                            (BMR) and the number of calories expended through physical activities and digestive
+                            processes.</p>
+                        <div class="formula-box">
+                            <strong>The Core Formula:</strong><br>
+                            <span>TDEE = BMR &times; Activity Multiplier</span>
+                        </div>
+                        <p><em>Note:</em> Note:- To provide the most accurate medical estimation, this calculator first
+                            determines your BMR using the industry-standard <strong>Mifflin-St Jeor Equation</strong>,
+                            and then multiplies it by your selected daily activity level.</p>
+                    </div>
+
+                    <div class="calculator-card info-card">
+                        <h3>Standard Activity Multipliers</h3>
+                        <p>Your BMR is multiplied by one of these specific factors based on your lifestyle to calculate
+                            your final TDEE:</p>
+                        <div class="table-responsive">
+                            <table class="seo-table">
+                                <thead>
+                                    <tr>
+                                        <th>Activity Level</th>
+                                        <th>Multiplier</th>
+                                        <th>General Description</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>Sedentary</td>
+                                        <td>1.2</td>
+                                        <td>Desk job, little to no formal exercise.</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Lightly Active</td>
+                                        <td>1.375</td>
+                                        <td>Light daily activity, exercise 1-3 days/week.</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Moderately Active</td>
+                                        <td>1.55</td>
+                                        <td>Moderate daily activity, exercise 3-5 days/week.</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Very Active</td>
+                                        <td>1.725</td>
+                                        <td>Physically demanding lifestyle, heavy exercise 6-7 days/week.</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Extra Active</td>
+                                        <td>1.9</td>
+                                        <td>Physical labor job or intense professional training 2x/day.</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <div class="calculator-card info-card">
+                        <h3>Frequently Asked Questions</h3>
+
+                        <div class="faq-item">
+                            <h4>1. How do I use my TDEE to lose or gain weight?</h4>
+                            <p>Your TDEE represents your maintenance calories. To lose weight (cut), you must consume
+                                fewer calories than your TDEE (typically a 300-500 calorie deficit). To gain weight or
+                                build muscle (bulk), you need to consume more calories than your TDEE (a 300-500 calorie
+                                surplus).</p>
+                        </div>
+
+                        <div class="faq-item">
+                            <h4>2. What is the difference between BMR and TDEE?</h4>
+                            <p>BMR (Basal Metabolic Rate) is the number of calories your body burns at complete rest
+                                just to keep essential functions running (like breathing and blood circulation). TDEE
+                                takes your BMR and adds the calories you burn through daily movement, exercise, and
+                                digesting food.</p>
+                        </div>
+
+                        <div class="faq-item">
+                            <h4>3. How often should I recalculate my TDEE?</h4>
+                            <p>You should recalculate your TDEE every time you lose or gain about 2 to 5 kg (5-10 lbs),
+                                or if your daily activity routine changes significantly. As your total body mass
+                                changes, your daily energy requirements change with it.</p>
                         </div>
 
                     </div>
-                </section>
 
 
-            </main>
+                </div>
+            </section>
+
+
+            <section id="bodyfat" class="view-section hidden">
+                <div class="header-text">
+                    <h1>Body Fat Percentage</h1>
+                    <p>Estimate your body fat using the U.S. Navy Method measurements.</p>
+                </div>
+
+                <div class="calculator-card">
+                    <div class="form-grid">
+                        <div class="input-group full-width">
+                            <label>Gender</label>
+                            <div class="radio-group">
+                                <label><input type="radio" name="bf-gender" value="male" checked> Male</label>
+                                <label><input type="radio" name="bf-gender" value="female"> Female</label>
+                            </div>
+                        </div>
+
+                        <div class="input-group">
+                            <label for="bf-height">Height (cm)</label>
+                            <input type="number" id="bf-height" placeholder="e.g., 175" required>
+                        </div>
+                        <div class="input-group">
+                            <label for="bf-neck">Neck (cm)</label>
+                            <input type="number" id="bf-neck" placeholder="At narrowest point" required>
+                        </div>
+                        <div class="input-group">
+                            <label for="bf-waist">Waist (cm)</label>
+                            <input type="number" id="bf-waist" placeholder="At navel" required>
+                        </div>
+
+                        <div id="hips-container" class="input-group hidden">
+                            <label for="bf-hips">Hips (cm)</label>
+                            <input type="number" id="bf-hips" placeholder="At widest point">
+                        </div>
+                    </div>
+
+                    <button id="calc-bf-btn" class="primary-btn">Calculate Body Fat</button>
+
+                    <div id="bf-result" class="result-box hidden">
+                        <div class="result-score">
+                            <h4>Body Fat</h4>
+                            <span id="bf-value" class="score-value">--</span>
+                        </div>
+                        <div class="result-status">
+                            <p>Status: <span id="bf-category" class="status-badge">--</span></p>
+                        </div>
+                    </div>
+
+                </div>
+            </section>
+
+
+        </main>
 
 
 
