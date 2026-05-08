@@ -29,10 +29,10 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // 2. Click Event Listener
-        // 2. Click Event Listener for Theme Toggle
+    // 2. Click Event Listener for Theme Toggle
     if (themeToggleBtn) {
         themeToggleBtn.addEventListener('click', (e) => {
-            e.preventDefault(); 
+            e.preventDefault();
             const isCurrentlyDark = document.body.classList.contains('dark-mode');
             applyTheme(!isCurrentlyDark); // Toggle theme
 
@@ -49,37 +49,66 @@ document.addEventListener('DOMContentLoaded', () => {
     const viewSections = document.querySelectorAll('.view-section');
     const toolCards = document.querySelectorAll('.tool-card'); // Naya add kiya hai
 
-    // Core routing logic function
-    function switchView(targetViewId) {
+    // Core routing logic function (Updated for History API)
+    function switchView(targetViewId, updateHistory = true) {
         // 1. Reset all active states in sidebar
         navItems.forEach(nav => nav.classList.remove('active'));
 
-        // 2. Find the matching sidebar link and make it active (Synchronization)
+        // 2. Find the matching sidebar link and make it active
         const activeNav = document.querySelector(`.nav-item[data-nav="${targetViewId}"]`);
         if (activeNav) {
             activeNav.classList.add('active');
         }
 
-        // 3. Hide all sections
+        // 3. Hide all sections properly
         viewSections.forEach(section => {
             section.classList.remove('active');
+            section.classList.add('hidden'); // Hidden class zaroori hai
         });
 
         // 4. Show the requested section
         const targetSection = document.getElementById(targetViewId);
         if (targetSection) {
+            targetSection.classList.remove('hidden');
             targetSection.classList.add('active');
+        }
+
+        // 5. Update Browser History Stack (Back Button Magic)
+        if (updateHistory) {
+            window.history.pushState({ viewId: targetViewId }, '', `#${targetViewId}`);
         }
     }
 
-    // Sidebar pe click event
+    // Sidebar pe click event (Updated)
     navItems.forEach(item => {
         item.addEventListener('click', function (e) {
             e.preventDefault();
             const targetViewId = this.getAttribute('data-nav');
-            switchView(targetViewId);
+
+            switchView(targetViewId); // History update ke sath call
+
+            // Auto-close sidebar on mobile
+            if (window.innerWidth <= 768) {
+                const sidebar = document.querySelector('.sidebar');
+                if (sidebar) sidebar.classList.remove('mobile-open');
+            }
         });
     });
+
+    // Intercept Mobile/System Back Button
+    window.addEventListener('popstate', (e) => {
+        if (e.state && e.state.viewId) {
+            // Agar history me state hai, to updateHistory parameter ko false rakho loop se bachne ke liye
+            switchView(e.state.viewId, false);
+        } else {
+            // Default load hone par wapas home (dashboard) par bhejo
+            switchView('dashboard', false);
+        }
+    });
+
+    // App load hote hi default Home state history me daal do
+    window.history.replaceState({ viewId: 'dashboard' }, '', window.location.pathname);
+
 
     // Dashboard Cards pe click event
     toolCards.forEach(card => {
@@ -251,12 +280,20 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-        // --- Mobile Burger Menu Logic ---
+    // --- Mobile Burger Menu Logic ---
     const mobileMenuBtn = document.getElementById('mobile-menu-btn');
     const sidebar = document.querySelector('.sidebar');
 
     if (mobileMenuBtn) {
         mobileMenuBtn.addEventListener('click', () => {
+
+            mobileMenuBtn.classList.add('clicked');
+
+            // Animation khatam hone ke baad remove karo
+            setTimeout(() => {
+                mobileMenuBtn.classList.remove('clicked');
+            }, 300);
+
             // Sidebar open/close toggle
             sidebar.classList.toggle('mobile-open');
         });
@@ -270,6 +307,21 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
     });
+
+    // --- Close Sidebar on Outside Click ---
+    document.addEventListener('click', (e) => {
+        const sidebar = document.querySelector('.sidebar');
+        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+
+        // Agar sidebar exist karta hai aur mobile view mein open hai
+        if (sidebar && sidebar.classList.contains('mobile-open')) {
+            // Check karo ki click sidebar ke andar NAHI hua hai aur menu button par NAHI hua hai
+            if (!sidebar.contains(e.target) && !mobileMenuBtn.contains(e.target)) {
+                sidebar.classList.remove('mobile-open');
+            }
+        }
+    });
+
 
 
 });

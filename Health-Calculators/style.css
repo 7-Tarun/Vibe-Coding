@@ -2,6 +2,8 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    scroll-behavior: smooth;
+    -webkit-tap-highlight-color: transparent;
 }
 
 :root {
@@ -115,7 +117,13 @@ body {
     cursor: pointer;
     font-size: 1.2rem;
     display: none;
-    /* Hidden on desktop, useful for mobile responsiveness later */
+    transition: transform 0.2s ease, color 0.2s ease;
+}
+
+.menu-toggle:active,
+.menu-toggle.clicked {
+    transform: scale(0.8) rotate(90deg);
+    color: var(--primary-color);
 }
 
 /* Navigation List */
@@ -535,7 +543,7 @@ select:focus {
         top: 0;
         left: -100%;
         /* Default hidden (screen ke left mein) */
-        height: 100vh;
+        height: 100dvh;
         transition: left 0.3s ease-in-out;
         /* Smooth slide animation */
         box-shadow: var(--shadow-lg);
