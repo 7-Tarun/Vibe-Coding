@@ -187,8 +187,9 @@ body {
     padding: var(--spacing-xl);
     background-color: var(--bg-secondary);
     overflow-y: auto;
+    display: flex;
+    flex-direction: column;
 }
-
 /* --- View Switching Logic --- */
 .view-section {
     display: none;
@@ -452,7 +453,8 @@ input[type="number"]::-moz-number-spin-down {
 .seo-content {
     display: flex;
     flex-direction: column;
-    gap: 20px; /* Cards ke beech ka gap */
+    gap: 20px;
+    /* Cards ke beech ka gap */
     margin-top: 30px;
 }
 
@@ -463,7 +465,8 @@ input[type="number"]::-moz-number-spin-down {
     color: var(--primary-main);
 }
 
-.info-card p, .faq-item p {
+.info-card p,
+.faq-item p {
     font-size: 0.95rem;
     line-height: 1.6;
     margin-bottom: 10px;
@@ -499,7 +502,8 @@ input[type="number"]::-moz-number-spin-down {
     margin-top: 10px;
 }
 
-.seo-table th, .seo-table td {
+.seo-table th,
+.seo-table td {
     padding: 12px;
     text-align: left;
     border-bottom: 1px solid var(--border-color);
@@ -577,6 +581,47 @@ select:focus {
 .mobile-header {
     display: none;
     /* Desktop par strictly hide rakhein */
+}
+
+/* --- Bottom Bar --- */
+.bottom-bar {
+    margin-top: auto;
+    padding: var(--spacing-md) var(--spacing-xl) var(--spacing-lg);
+    padding-bottom: 5px;
+    text-align: center;
+    font-size: 0.78rem;
+    color: var(--text-light);
+    border-top: 1px solid var(--border-color);
+    flex-shrink: 0;
+}
+
+.view-section.active {
+    display: block;
+    flex: 1; /* ← ye add karo */
+}
+
+.bottom-bar strong {
+    color: var(--primary-main);
+    font-weight: 700;
+}
+
+#installAppBtn {
+    display: none;
+    background-color: var(--primary-main);
+    color: #fff;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: 700;
+    width: 100%;
+    margin-top: var(--spacing-sm);
+    font-size: 0.9rem;
+    transition: background-color 0.2s ease;
+}
+
+#installAppBtn:hover {
+    background-color: var(--primary-dark);
 }
 
 @media (max-width: 768px) {

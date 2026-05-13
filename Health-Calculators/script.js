@@ -322,17 +322,67 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
+    // PWA Custom Install Button Logic
+    let deferredPrompt;
+    const installBtn = document.getElementById('installAppBtn');
+
+    // Ye event tab fire hota hai jab browser PWA install karne ke liye ready hota hai
+    window.addEventListener('beforeinstallprompt', (e) => {
+        // Browser ka default mini-infobar rokna
+        e.preventDefault();
+        // Event ko save kar lo taaki button click hone par use kar sakein
+        deferredPrompt = e;
+
+        // Apna custom button show kar do
+        if (installBtn) {
+            installBtn.style.display = 'block';
+        }
+    });
+
+    // Jab user tere Download button par click kare
+    if (installBtn) {
+        installBtn.addEventListener('click', async () => {
+            if (deferredPrompt !== null) {
+                // Browser ka asli installation prompt show karo
+                deferredPrompt.prompt();
+
+                // Wait karo ki user ne Install dabaya ya Cancel
+                const { outcome } = await deferredPrompt.userChoice;
+                if (outcome === 'accepted') {
+                    console.log('User ne App install kar liya');
+                } else {
+                    console.log('User ne installation cancel kar di');
+                }
+
+                // Ek baar prompt use hone ke baad usse clear kar do
+                deferredPrompt = null;
+                // Button ko wapas hide kar do (kyunki app install ho chuka hai)
+                installBtn.style.display = 'none';
+            }
+        });
+    }
+
+    // Check if already installed
+    window.addEventListener('appinstalled', () => {
+        // Agar kisi aur tarike se install ho gaya, toh button hide kar do
+        if (installBtn) {
+            installBtn.style.display = 'none';
+        }
+        console.log('PWA was installed');
+    });
+
+
 });
 
 // PWA Service Worker Registration
 if ('serviceWorker' in navigator) {
-  window.addEventListener('load', () => {
-    navigator.serviceWorker.register('./sw.js')
-      .then(registration => {
-        console.log('ServiceWorker registered successfully.');
-      })
-      .catch(err => {
-        console.log('ServiceWorker registration failed: ', err);
-      });
-  });
+    window.addEventListener('load', () => {
+        navigator.serviceWorker.register('./sw.js')
+            .then(registration => {
+                console.log('ServiceWorker registered successfully.');
+            })
+            .catch(err => {
+                console.log('ServiceWorker registration failed: ', err);
+            });
+    });
 }
