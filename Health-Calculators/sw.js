@@ -1,4 +1,11 @@
-const CACHE_NAME = 'healthcalc-v1';
+/* 
+ * CRITICAL PWA UPDATE RULE:
+ * Always increment the CACHE_NAME version (e.g., 'healthcalc-v1' -> 'healthcalc-v2') before pushing new changes.
+ * The Service Worker relies on this version change to detect updates, clear the old cache, and fetch the new code.
+ * If you do not update this version, the app will continue serving outdated offline files to users.
+ */
+
+const CACHE_NAME = 'healthcalc-v2';
 const urlsToCache = [
     './',
     './index.html',
