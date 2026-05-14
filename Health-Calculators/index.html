@@ -69,6 +69,42 @@
                             <span>TDEE Calculator</span>
                         </a>
                     </li>
+                    <li class="nav-item" data-nav="bmr">
+                        <a href="#">
+                            <i class="fa-solid fa-fire-flame-curved"></i>
+                            <span>BMR Calculator</span>
+                        </a>
+                    </li>
+                    <li class="nav-item" data-nav="calorie">
+                        <a href="#">
+                            <i class="fa-solid fa-utensils"></i>
+                            <span>Calorie Calculator</span>
+                        </a>
+                    </li>
+                    <li class="nav-item" data-nav="macro">
+                        <a href="#">
+                            <i class="fa-solid fa-chart-pie"></i>
+                            <span>Macro Calculator</span>
+                        </a>
+                    </li>
+                    <li class="nav-item" data-nav="water">
+                        <a href="#">
+                            <i class="fa-solid fa-glass-water"></i>
+                            <span>Water Intake</span>
+                        </a>
+                    </li>
+                    <li class="nav-item" data-nav="protein">
+                        <a href="#">
+                            <i class="fa-solid fa-drumstick-bite"></i>
+                            <span>Protein Intake</span>
+                        </a>
+                    </li>
+                    <li class="nav-item" data-nav="ideal-weight">
+                        <a href="#">
+                            <i class="fa-solid fa-scale-balanced"></i>
+                            <span>Ideal Weight</span>
+                        </a>
+                    </li>
                     <li class="nav-item" data-nav="bodyfat">
                         <a href="#">
                             <i class="fa-solid fa-percentage"></i>
@@ -138,6 +174,66 @@
                             <span class="calc-link">Calculate TDEE &rarr;</span>
                         </div>
 
+                        <div class="tool-card" data-nav="bmr">
+                            <div class="card-header">
+                                <i class="fa-solid fa-fire-flame-curved icon-large"></i>
+                                <span class="badge badge-quick">QUICK</span>
+                            </div>
+                            <h3>BMR Calculator</h3>
+                            <p>Basal Metabolic Rate — calories your body needs at rest every day.</p>
+                            <span class="calc-link">Calculate BMR &rarr;</span>
+                        </div>
+
+                        <div class="tool-card" data-nav="calorie">
+                            <div class="card-header">
+                                <i class="fa-solid fa-utensils icon-large"></i>
+                                <span class="badge badge-detailed">DETAILED</span>
+                            </div>
+                            <h3>Calorie Calculator</h3>
+                            <p>Daily calorie needs for weight loss, gain, or maintenance.</p>
+                            <span class="calc-link">Calculate Calories &rarr;</span>
+                        </div>
+
+                        <div class="tool-card" data-nav="macro">
+                            <div class="card-header">
+                                <i class="fa-solid fa-chart-pie icon-large"></i>
+                                <span class="badge badge-advanced">ADVANCED</span>
+                            </div>
+                            <h3>Macro Calculator</h3>
+                            <p>Calculate macronutrient breakdown (protein, carbs, fat) for your goals.</p>
+                            <span class="calc-link">Calculate Macros &rarr;</span>
+                        </div>
+
+                        <div class="tool-card" data-nav="water">
+                            <div class="card-header">
+                                <i class="fa-solid fa-glass-water icon-large"></i>
+                                <span class="badge badge-quick">QUICK</span>
+                            </div>
+                            <h3>Water Intake Calculator</h3>
+                            <p>Find out how much water you should drink daily based on your weight.</p>
+                            <span class="calc-link">Calculate Water Intake &rarr;</span>
+                        </div>
+
+                        <div class="tool-card" data-nav="protein">
+                            <div class="card-header">
+                                <i class="fa-solid fa-drumstick-bite icon-large"></i>
+                                <span class="badge badge-quick">QUICK</span>
+                            </div>
+                            <h3>Protein Intake Calculator</h3>
+                            <p>Calculate your daily protein needs based on weight and activity level.</p>
+                            <span class="calc-link">Calculate Protein Intake &rarr;</span>
+                        </div>
+
+                        <div class="tool-card" data-nav="ideal-weight">
+                            <div class="card-header">
+                                <i class="fa-solid fa-scale-balanced icon-large"></i>
+                                <span class="badge badge-detailed">DETAILED</span>
+                            </div>
+                            <h3>Ideal Weight Calculator</h3>
+                            <p>Find your ideal weight range based on your height and gender.</p>
+                            <span class="calc-link">Calculate Ideal Weight &rarr;</span>
+                        </div>
+
                         <div class="tool-card" data-nav="bodyfat">
                             <div class="card-header">
                                 <i class="fa-solid fa-percentage icon-large"></i>
@@ -151,7 +247,149 @@
                     </div>
                 </div>
             </section>
+            <section id="calorie" class="view-section hidden">
+                <div class="header-text">
+                    <h1>Calorie Calculator</h1>
+                    <p>Calculate your daily calorie needs for weight loss, gain, or maintenance.</p>
+                </div>
 
+                <div class="calculator-card">
+                    <div class="form-grid">
+                        <div class="input-group full-width">
+                            <label>Gender</label>
+                            <div class="radio-group">
+                                <label><input type="radio" name="calorie-gender" value="male" checked> Male</label>
+                                <label><input type="radio" name="calorie-gender" value="female"> Female</label>
+                            </div>
+                        </div>
+
+                        <div class="input-group full-width">
+                            <label for="calorie-age">Age (years)</label>
+                            <input type="number" id="calorie-age" placeholder="e.g., 28" min="10" max="120" required>
+                        </div>
+                        <div class="input-group">
+                            <label for="calorie-weight">Weight (kg)</label>
+                            <input type="number" id="calorie-weight" placeholder="e.g., 70" required>
+                        </div>
+                        <div class="input-group">
+                            <label for="calorie-height">Height (cm)</label>
+                            <input type="number" id="calorie-height" placeholder="e.g., 175" required>
+                        </div>
+
+                        <div class="input-group full-width">
+                            <label for="calorie-activity">Activity Level</label>
+                            <select id="calorie-activity">
+                                <option value="1.2">Sedentary (Little to no exercise)</option>
+                                <option value="1.375">Lightly Active (Light exercise 1-3 days/week)</option>
+                                <option value="1.55" selected>Moderately Active (Moderate exercise 3-5 days/week)
+                                </option>
+                                <option value="1.725">Very Active (Hard exercise 6-7 days/week)</option>
+                                <option value="1.9">Extra Active (Physical job or training 2x/day)</option>
+                            </select>
+                        </div>
+
+                        <div class="input-group full-width">
+                            <label for="calorie-goal">Goal</label>
+                            <select id="calorie-goal">
+                                <option value="maintain" selected>Maintain Weight</option>
+                                <option value="lose">Lose Weight (1 lb/week)</option>
+                                <option value="lose-fast">Lose Weight Fast (2 lbs/week)</option>
+                                <option value="gain">Gain Weight (1 lb/week)</option>
+                                <option value="gain-fast">Gain Weight Fast (2 lbs/week)</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <button id="calc-calorie-btn" class="primary-btn">Calculate Calories</button>
+
+                    <div id="calorie-result" class="result-box hidden"
+                        style="flex-direction: column; align-items: flex-start; gap: 10px;">
+                        <div class="result-score">
+                            <h4>Daily Calories</h4>
+                            <span id="calorie-value" class="score-value">--</span>
+                            <span style="font-size:1rem; color:var(--text-secondary)">kcal/day</span>
+                        </div>
+                        <p id="calorie-note" style="font-size:0.9rem; color:var(--text-secondary);">This is your
+                            estimated daily calorie intake for your goal.</p>
+                    </div>
+                </div>
+
+                <div class="seo-content">
+                    <div class="calculator-card info-card">
+                        <h3>How Calorie Needs Are Calculated</h3>
+                        <p>To estimate your daily calorie target, this tool first calculates your Basal Metabolic Rate
+                            (BMR) using the Mifflin-St Jeor equation, then multiplies by your activity level, and
+                            finally adjusts for your goal.</p>
+                        <div class="formula-box">
+                            <strong>Mifflin-St Jeor Formula</strong><br>
+                            <span>Male: BMR = 10 × weight(kg) + 6.25 × height(cm) − 5 × age + 5</span><br>
+                            <span>Female: BMR = 10 × weight(kg) + 6.25 × height(cm) − 5 × age − 161</span><br>
+                            <span>TDEE = BMR × Activity Multiplier</span>
+                        </div>
+                    </div>
+                    <div class="calculator-card info-card">
+                        <h3>Calorie Adjustment Table</h3>
+                        <div class="table-responsive">
+                            <table class="seo-table">
+                                <thead>
+                                    <tr>
+                                        <th>Goal</th>
+                                        <th>Adjustment</th>
+                                        <th>Result</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>Maintain</td>
+                                        <td>0 kcal</td>
+                                        <td>Daily calories = TDEE</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Lose Weight</td>
+                                        <td>−300 kcal</td>
+                                        <td>Moderate deficit for gradual weight loss</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Lose Fast</td>
+                                        <td>−500 kcal</td>
+                                        <td>More aggressive deficit for faster results</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Gain Weight</td>
+                                        <td>+300 kcal</td>
+                                        <td>Moderate surplus to support muscle gain</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Gain Fast</td>
+                                        <td>+500 kcal</td>
+                                        <td>Stronger surplus for faster gains</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <div class="calculator-card info-card">
+                        <h3>Frequently Asked Questions</h3>
+                        <div class="faq-item">
+                            <h4>1. Can I use this calorie calculator for weight loss?</h4>
+                            <p>Yes. Choose a weight loss goal from the calculator to reduce daily calories by a safe
+                                amount, typically 300-500 calories below maintenance.</p>
+                        </div>
+                        <div class="faq-item">
+                            <h4>2. Is this calculator suitable for men and women?</h4>
+                            <p>This calculator adjusts BMR based on gender and then applies your activity level. It
+                                works for both men and women, but always use it as an estimate and consult a
+                                professional for personalized advice.</p>
+                        </div>
+                        <div class="faq-item">
+                            <h4>3. Should I recalculate my calorie target regularly?</h4>
+                            <p>Yes. Recalculate whenever your weight changes significantly or if your daily activity
+                                level changes. That ensures your calorie target stays aligned with your current needs.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </section>
             <section id="bmi" class="view-section hidden">
                 <div class="header-text">
                     <h1>BMI Calculator</h1>
@@ -280,6 +518,633 @@
 
                 </div>
             </section>
+            <section id="macro" class="view-section hidden">
+                <div class="header-text">
+                    <h1>Macro Calculator</h1>
+                    <p>Calculate your daily macronutrient needs (protein, carbs, fat) based on your calorie intake.</p>
+                </div>
+
+                <div class="calculator-card">
+                    <div class="form-grid">
+                        <div class="input-group full-width">
+                            <label for="macro-calories">Daily Calories</label>
+                            <input type="number" id="macro-calories" placeholder="e.g., 2500" required>
+                        </div>
+
+                        <div class="input-group full-width">
+                            <label for="macro-goal">Goal/Preset</label>
+                            <select id="macro-goal">
+                                <option value="balanced" selected>Balanced (40% Carbs, 30% Protein, 30% Fat)</option>
+                                <option value="high-protein">High Protein (30% Carbs, 40% Protein, 30% Fat)</option>
+                                <option value="low-carb">Low Carb (20% Carbs, 40% Protein, 40% Fat)</option>
+                                <option value="keto">Keto (10% Carbs, 20% Protein, 70% Fat)</option>
+                                <option value="cutting">Cutting (50% Carbs, 30% Protein, 20% Fat)</option>
+                                <option value="bulking">Bulking (60% Carbs, 25% Protein, 15% Fat)</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <button id="calc-macro-btn" class="primary-btn">Calculate Macros</button>
+
+                    <div id="macro-result" class="result-box hidden"
+                        style="flex-direction: column; align-items: flex-start; gap: 15px;">
+                        <div class="macro-breakdown">
+                            <div class="macro-item">
+                                <span class="macro-label">Protein:</span>
+                                <span id="protein-grams" class="macro-value">--g</span>
+                                <span id="protein-calories" class="macro-cal">-- kcal</span>
+                            </div>
+                            <div class="macro-item">
+                                <span class="macro-label">Carbs:</span>
+                                <span id="carbs-grams" class="macro-value">--g</span>
+                                <span id="carbs-calories" class="macro-cal">-- kcal</span>
+                            </div>
+                            <div class="macro-item">
+                                <span class="macro-label">Fat:</span>
+                                <span id="fat-grams" class="macro-value">--g</span>
+                                <span id="fat-calories" class="macro-cal">-- kcal</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="seo-content">
+                    <div class="calculator-card info-card">
+                        <h3>What Are Macronutrients?</h3>
+                        <p>Macronutrients are the three main nutrients your body needs in large amounts: protein,
+                            carbohydrates, and fat. Each plays a unique role in energy, recovery, and overall
+                            performance.</p>
+                        <div class="formula-box">
+                            <strong>Macro Conversion Formulas</strong><br>
+                            <span>Protein = (Calories × Protein %) ÷ 4</span><br>
+                            <span>Carbs = (Calories × Carbohydrate %) ÷ 4</span><br>
+                            <span>Fat = (Calories × Fat %) ÷ 9</span>
+                        </div>
+                        <p>This calculator converts your chosen macro split into grams based on your daily calorie
+                            target.</p>
+                    </div>
+                    <div class="calculator-card info-card">
+                        <h3>Macro Split Table</h3>
+                        <div class="table-responsive">
+                            <table class="seo-table">
+                                <thead>
+                                    <tr>
+                                        <th>Preset</th>
+                                        <th>Protein</th>
+                                        <th>Carbs</th>
+                                        <th>Fat</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>Balanced</td>
+                                        <td>30%</td>
+                                        <td>40%</td>
+                                        <td>30%</td>
+                                    </tr>
+                                    <tr>
+                                        <td>High Protein</td>
+                                        <td>40%</td>
+                                        <td>30%</td>
+                                        <td>30%</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Low Carb</td>
+                                        <td>40%</td>
+                                        <td>20%</td>
+                                        <td>40%</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Keto</td>
+                                        <td>20%</td>
+                                        <td>10%</td>
+                                        <td>70%</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Cutting</td>
+                                        <td>30%</td>
+                                        <td>50%</td>
+                                        <td>20%</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Bulking</td>
+                                        <td>25%</td>
+                                        <td>60%</td>
+                                        <td>15%</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <div class="calculator-card info-card">
+                        <h3>Frequently Asked Questions</h3>
+                        <div class="faq-item">
+                            <h4>1. How do I choose the right macro split?</h4>
+                            <p>Choose a split based on your goal: balanced for general health, high protein for muscle
+                                support, low carb for fat loss, and keto for a very low-carb lifestyle.</p>
+                        </div>
+                        <div class="faq-item">
+                            <h4>2. Can I change macros daily?</h4>
+                            <p>Yes. You can adjust your macros based on training days, rest days, or how your body
+                                responds. The calculator gives you a good baseline.</p>
+                        </div>
+                        <div class="faq-item">
+                            <h4>3. Why do fat grams use 9 kcal per gram?</h4>
+                            <p>Fat contains more energy than protein or carbs. The calculator uses 9 kcal per gram of
+                                fat to convert calories into fat grams accurately.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section id="water" class="view-section hidden">
+                <div class="header-text">
+                    <h1>Water Intake Calculator</h1>
+                    <p>Calculate your recommended daily water intake based on your body weight.</p>
+                </div>
+
+                <div class="calculator-card">
+                    <div class="form-grid">
+                        <div class="input-group full-width">
+                            <label for="water-weight">Weight (kg)</label>
+                            <input type="number" id="water-weight" placeholder="e.g., 70" required>
+                        </div>
+
+                        <div class="input-group full-width">
+                            <label for="water-activity">Activity Level</label>
+                            <select id="water-activity">
+                                <option value="1.0" selected>Sedentary (Little exercise)</option>
+                                <option value="1.2">Lightly Active (Light exercise)</option>
+                                <option value="1.4">Moderately Active (Regular exercise)</option>
+                                <option value="1.6">Very Active (Intense exercise)</option>
+                            </select>
+                        </div>
+
+                        <div class="input-group full-width">
+                            <label for="water-climate">Climate</label>
+                            <select id="water-climate">
+                                <option value="1.0" selected>Normal</option>
+                                <option value="1.2">Hot/Humid</option>
+                                <option value="1.1">Cold/Dry</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <button id="calc-water-btn" class="primary-btn">Calculate Water Intake</button>
+
+                    <div id="water-result" class="result-box hidden"
+                        style="flex-direction: column; align-items: flex-start; gap: 10px;">
+                        <div class="result-score">
+                            <h4>Daily Water Intake</h4>
+                            <span id="water-value" class="score-value">--</span>
+                            <span style="font-size:1rem; color:var(--text-secondary)">ml/day</span>
+                        </div>
+                        <p id="water-note" style="font-size:0.9rem; color:var(--text-secondary);">This is your
+                            recommended daily water intake. Adjust based on individual needs.</p>
+                    </div>
+                </div>
+
+                <div class="seo-content">
+                    <div class="calculator-card info-card">
+                        <h3>How Water Intake is Calculated</h3>
+                        <p>This calculator starts with a base recommendation of 30 milliliters per kilogram of body
+                            weight, then adjusts for your daily activity and climate.</p>
+                        <div class="formula-box">
+                            <strong>Water Intake Formula</strong><br>
+                            <span>Base = weight(kg) × 30 ml</span><br>
+                            <span>Total = Base × Activity Multiplier × Climate Multiplier</span>
+                        </div>
+                    </div>
+                    <div class="calculator-card info-card">
+                        <h3>Water Intake Table</h3>
+                        <div class="table-responsive">
+                            <table class="seo-table">
+                                <thead>
+                                    <tr>
+                                        <th>Factor</th>
+                                        <th>Option</th>
+                                        <th>Multiplier</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>Activity</td>
+                                        <td>Sedentary</td>
+                                        <td>1.0</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Activity</td>
+                                        <td>Lightly Active</td>
+                                        <td>1.2</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Activity</td>
+                                        <td>Moderately Active</td>
+                                        <td>1.4</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Activity</td>
+                                        <td>Very Active</td>
+                                        <td>1.6</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Climate</td>
+                                        <td>Normal</td>
+                                        <td>1.0</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Climate</td>
+                                        <td>Hot / Humid</td>
+                                        <td>1.2</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Climate</td>
+                                        <td>Cold / Dry</td>
+                                        <td>1.1</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <div class="calculator-card info-card">
+                        <h3>Frequently Asked Questions</h3>
+                        <div class="faq-item">
+                            <h4>1. Is it better to drink before or after exercise?</h4>
+                            <p>Drink water throughout the day, especially before exercise. After exercise, rehydrate to
+                                replace fluid loss from sweat and support recovery.</p>
+                        </div>
+                        <div class="faq-item">
+                            <h4>2. Can I drink too much water?</h4>
+                            <p>Yes, excessive water intake can cause hyponatremia. Stick to a reasonable daily range and
+                                listen to your body's thirst cues.</p>
+                        </div>
+                        <div class="faq-item">
+                            <h4>3. Do I need more water in hot weather?</h4>
+                            <p>Yes. Hot and humid conditions increase sweat rate, so you should drink more water to stay
+                                hydrated and prevent overheating.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section id="protein" class="view-section hidden">
+                <div class="header-text">
+                    <h1>Protein Intake Calculator</h1>
+                    <p>Calculate your recommended daily protein intake based on your weight and goals.</p>
+                </div>
+
+                <div class="calculator-card">
+                    <div class="form-grid">
+                        <div class="input-group full-width">
+                            <label for="protein-weight">Weight (kg)</label>
+                            <input type="number" id="protein-weight" placeholder="e.g., 70" required>
+                        </div>
+
+                        <div class="input-group full-width">
+                            <label for="protein-activity">Activity Level</label>
+                            <select id="protein-activity">
+                                <option value="0.8" selected>Sedentary (Little exercise)</option>
+                                <option value="1.2">Lightly Active (Light exercise)</option>
+                                <option value="1.6">Moderately Active (Regular exercise)</option>
+                                <option value="2.0">Very Active (Intense exercise)</option>
+                                <option value="2.2">Athlete/Bodybuilder</option>
+                            </select>
+                        </div>
+
+                        <div class="input-group full-width">
+                            <label for="protein-goal">Goal</label>
+                            <select id="protein-goal">
+                                <option value="1.0" selected>Maintenance</option>
+                                <option value="1.2">Weight Loss</option>
+                                <option value="1.4">Muscle Gain</option>
+                                <option value="1.6">Bulking</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <button id="calc-protein-btn" class="primary-btn">Calculate Protein Intake</button>
+
+                    <div id="protein-result" class="result-box hidden"
+                        style="flex-direction: column; align-items: flex-start; gap: 10px;">
+                        <div class="result-score">
+                            <h4>Daily Protein Intake</h4>
+                            <span id="protein-value" class="score-value">--</span>
+                            <span style="font-size:1rem; color:var(--text-secondary)">g/day</span>
+                        </div>
+                        <p id="protein-note" style="font-size:0.9rem; color:var(--text-secondary);">This is your
+                            recommended daily protein intake. Adjust based on individual needs.</p>
+                    </div>
+                </div>
+
+                <div class="seo-content">
+                    <div class="calculator-card info-card">
+                        <h3>How Protein Intake is Calculated</h3>
+                        <p>This calculator uses your body weight as a base and adjusts protein needs for your activity
+                            level and goal.</p>
+                        <div class="formula-box">
+                            <strong>Protein Calculation Formula</strong><br>
+                            <span>Base = weight(kg) × 0.8 g</span><br>
+                            <span>Total = Base × Activity Multiplier × Goal Multiplier</span>
+                        </div>
+                    </div>
+                    <div class="calculator-card info-card">
+                        <h3>Protein Multiplier Table</h3>
+                        <div class="table-responsive">
+                            <table class="seo-table">
+                                <thead>
+                                    <tr>
+                                        <th>Factor</th>
+                                        <th>Option</th>
+                                        <th>Multiplier</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>Activity</td>
+                                        <td>Sedentary</td>
+                                        <td>0.8</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Activity</td>
+                                        <td>Lightly Active</td>
+                                        <td>1.2</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Activity</td>
+                                        <td>Moderately Active</td>
+                                        <td>1.6</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Activity</td>
+                                        <td>Very Active</td>
+                                        <td>2.0</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Activity</td>
+                                        <td>Athlete / Bodybuilder</td>
+                                        <td>2.2</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Goal</td>
+                                        <td>Maintenance</td>
+                                        <td>1.0</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Goal</td>
+                                        <td>Weight Loss</td>
+                                        <td>1.2</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Goal</td>
+                                        <td>Muscle Gain</td>
+                                        <td>1.4</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Goal</td>
+                                        <td>Bulking</td>
+                                        <td>1.6</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <div class="calculator-card info-card">
+                        <h3>Frequently Asked Questions</h3>
+                        <div class="faq-item">
+                            <h4>1. What if I struggle to eat enough protein?</h4>
+                            <p>Choose protein-dense foods like lean meats, eggs, dairy, beans, and legumes. Protein
+                                shakes can also help fill gaps in your daily intake.</p>
+                        </div>
+                        <div class="faq-item">
+                            <h4>2. Is more protein always better?</h4>
+                            <p>Not always. Excessively high protein intake may be unnecessary for casual athletes. Aim
+                                for an amount that supports your activity level and body goals.</p>
+                        </div>
+                        <div class="faq-item">
+                            <h4>3. Can protein help with weight loss?</h4>
+                            <p>Yes. Protein increases fullness and can help preserve muscle while you're in a calorie
+                                deficit, making it a useful tool for healthy weight loss.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section id="ideal-weight" class="view-section hidden">
+                <div class="header-text">
+                    <h1>Ideal Weight Calculator</h1>
+                    <p>Estimate your healthy weight range based on your height and gender.</p>
+                </div>
+
+                <div class="calculator-card">
+                    <div class="form-grid">
+                        <div class="input-group full-width">
+                            <label>Gender</label>
+                            <div class="radio-group">
+                                <label><input type="radio" name="ideal-gender" value="male" checked> Male</label>
+                                <label><input type="radio" name="ideal-gender" value="female"> Female</label>
+                            </div>
+                        </div>
+
+                        <div class="input-group full-width">
+                            <label for="ideal-height">Height (cm)</label>
+                            <input type="number" id="ideal-height" placeholder="e.g., 175" required>
+                        </div>
+                    </div>
+
+                    <button id="calc-ideal-weight-btn" class="primary-btn">Calculate Ideal Weight</button>
+
+                    <div id="ideal-weight-result" class="result-box hidden"
+                        style="flex-direction: column; align-items: flex-start; gap: 10px;">
+                        <div class="result-score">
+                            <h4>Ideal Weight Range</h4>
+                            <span id="ideal-weight-range" class="score-value">--</span>
+                            <span style="font-size:1rem; color:var(--text-secondary)">kg</span>
+                        </div>
+                        <p id="ideal-weight-note" style="font-size:0.9rem; color:var(--text-secondary);">This range is
+                            based on a healthy BMI window (18.5–24.9).</p>
+                    </div>
+                </div>
+
+                <div class="seo-content">
+                    <div class="calculator-card info-card">
+                        <h3>How Ideal Weight is Estimated</h3>
+                        <p>We estimate your healthy weight range using a BMI window of 18.5 to 24.9 and include a Devine
+                            formula target for an additional height-based benchmark.</p>
+                        <div class="formula-box">
+                            <strong>Ideal Weight Formula</strong><br>
+                            <span>Low = 18.5 × (height(m))²</span><br>
+                            <span>High = 24.9 × (height(m))²</span><br>
+                            <span>Devine Target = 50 kg + 2.3 kg × height(inches over 5 feet)</span>
+                        </div>
+                    </div>
+                    <div class="calculator-card info-card">
+                        <h3>Ideal Weight Reference</h3>
+                        <div class="table-responsive">
+                            <table class="seo-table">
+                                <thead>
+                                    <tr>
+                                        <th>Measure</th>
+                                        <th>Definition</th>
+                                        <th>Why It Matters</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>BMI Range</td>
+                                        <td>18.5–24.9</td>
+                                        <td>Represents a healthy weight range for most adults.</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Low Ideal Weight</td>
+                                        <td>18.5 × height²</td>
+                                        <td>Lower edge of the healthy BMI window.</td>
+                                    </tr>
+                                    <tr>
+                                        <td>High Ideal Weight</td>
+                                        <td>24.9 × height²</td>
+                                        <td>Upper edge of the healthy BMI window.</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Devine Formula</td>
+                                        <td>50 kg + 2.3 kg per inch over 5 ft</td>
+                                        <td>Useful for estimating target weight based on height and gender.</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <div class="calculator-card info-card">
+                        <h3>Frequently Asked Questions</h3>
+                        <div class="faq-item">
+                            <h4>1. Can ideal weight vary by body type?</h4>
+                            <p>Yes. This calculator uses standard BMI and Devine estimates. Individual differences in
+                                muscle mass, bone density, and body shape mean your ideal weight can vary from these
+                                estimates.</p>
+                        </div>
+                        <div class="faq-item">
+                            <h4>2. Is ideal weight the same as healthy weight?</h4>
+                            <p>Not exactly. Ideal weight is a guideline, while healthy weight depends on your body
+                                composition, fitness level, and overall health. Use these ranges as a starting point,
+                                not a strict rule.</p>
+                        </div>
+                        <div class="faq-item">
+                            <h4>3. Should I follow the Devine formula exactly?</h4>
+                            <p>The Devine formula is a helpful estimate, especially for planning. However, you should
+                                adjust based on how you feel, your performance, and any guidance from your healthcare
+                                provider.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section id="bmr" class="view-section hidden">
+                <div class="header-text">
+                    <h1>BMR Calculator</h1>
+                    <p>Basal Metabolic Rate - Calories burned at rest every day.</p>
+                </div>
+
+                <div class="calculator-card">
+                    <div class="form-grid">
+                        <div class="input-group full-width">
+                            <label>Gender</label>
+                            <div class="radio-group">
+                                <label><input type="radio" name="bmr-gender" value="male" checked> Male</label>
+                                <label><input type="radio" name="bmr-gender" value="female"> Female</label>
+                            </div>
+                        </div>
+
+                        <div class="input-group full-width">
+                            <label for="bmr-age">Age (years)</label>
+                            <input type="number" id="bmr-age" placeholder="e.g., 28" min="10" max="120" required>
+                        </div>
+                        <div class="input-group">
+                            <label for="bmr-weight">Weight (kg)</label>
+                            <input type="number" id="bmr-weight" placeholder="e.g., 70" required>
+                        </div>
+                        <div class="input-group">
+                            <label for="bmr-height">Height (cm)</label>
+                            <input type="number" id="bmr-height" placeholder="e.g., 175" required>
+                        </div>
+                    </div>
+
+                    <button id="calc-bmr-btn" class="primary-btn">Calculate BMR</button>
+
+                    <div id="bmr-result" class="result-box hidden"
+                        style="flex-direction: column; align-items: flex-start; gap: 10px;">
+                        <div class="result-score">
+                            <h4>Your BMR</h4>
+                            <span id="bmr-value" class="score-value">--</span>
+                            <span style="font-size:1rem; color:var(--text-secondary)">kcal/day</span>
+                        </div>
+                        <p id="bmr-note" style="font-size:0.9rem; color:var(--text-secondary);">This is the estimated
+                            number of calories your body needs at rest.</p>
+                    </div>
+                </div>
+
+                <div class="seo-content">
+                    <div class="calculator-card info-card">
+                        <h3>How BMR Works</h3>
+                        <p>Your Basal Metabolic Rate is the energy your body burns at rest to support vital functions
+                            like breathing, circulation, and cell repair. This is the baseline number used to build your
+                            daily calorie plan.</p>
+                        <div class="formula-box">
+                            <strong>Mifflin-St Jeor Equation</strong><br>
+                            <span>Male: BMR = 10 × weight(kg) + 6.25 × height(cm) − 5 × age + 5</span><br>
+                            <span>Female: BMR = 10 × weight(kg) + 6.25 × height(cm) − 5 × age − 161</span>
+                        </div>
+                    </div>
+                    <div class="calculator-card info-card">
+                        <h3>BMR Factor Table</h3>
+                        <div class="table-responsive">
+                            <table class="seo-table">
+                                <thead>
+                                    <tr>
+                                        <th>Factor</th>
+                                        <th>Effect on BMR</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>Gender</td>
+                                        <td>Male values are typically higher due to greater lean muscle mass.</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Weight</td>
+                                        <td>Higher weight increases total energy required at rest.</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Height</td>
+                                        <td>Taller people burn more calories because they have larger body surface area.
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>Age</td>
+                                        <td>BMR decreases with age as metabolic rate slows.</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <div class="calculator-card info-card">
+                        <h3>Frequently Asked Questions</h3>
+                        <div class="faq-item">
+                            <h4>1. Can BMR change over time?</h4>
+                            <p>Yes. BMR will change with age, weight, body composition, and hormonal shifts. Recalculate
+                                it periodically, especially after major weight changes.</p>
+                        </div>
+                        <div class="faq-item">
+                            <h4>2. Does exercise count in BMR?</h4>
+                            <p>No. BMR only estimates the calories burned at rest. Exercise calories are added
+                                separately by tools like the TDEE or calorie calculator.</p>
+                        </div>
+                        <div class="faq-item">
+                            <h4>3. Why is BMR lower for women?</h4>
+                            <p>Women often have lower BMR values because they typically carry more body fat and less
+                                lean muscle mass compared to men, and muscle burns more calories than fat.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
 
 
             <section id="tdee" class="view-section hidden">
@@ -343,22 +1208,19 @@
                     <div class="calculator-card info-card">
                         <h3>What is TDEE & How is it Calculated?</h3>
                         <p>The Total Daily Energy Expenditure (TDEE) refers to the total number of calories that one’s
-                            body expends throughout a day. TDEE involves the combination of the basal metabolic rate
-                            (BMR) and the number of calories expended through physical activities and digestive
-                            processes.</p>
+                            body expends throughout a day. TDEE combines your basal metabolic rate (BMR) with calories
+                            burned during daily activity and digestion.</p>
                         <div class="formula-box">
                             <strong>The Core Formula:</strong><br>
                             <span>TDEE = BMR &times; Activity Multiplier</span>
                         </div>
-                        <p><em>Note:</em> Note:- To provide the most accurate medical estimation, this calculator first
-                            determines your BMR using the industry-standard <strong>Mifflin-St Jeor Equation</strong>,
-                            and then multiplies it by your selected daily activity level.</p>
+                        <p><em>Note:</em> This calculator first estimates your BMR using the industry-standard
+                            <strong>Mifflin-St Jeor Equation</strong> and then multiplies it by your activity level.</p>
                     </div>
 
                     <div class="calculator-card info-card">
                         <h3>Standard Activity Multipliers</h3>
-                        <p>Your BMR is multiplied by one of these specific factors based on your lifestyle to calculate
-                            your final TDEE:</p>
+                        <p>Your BMR is multiplied by one of these lifestyle factors to calculate your final TDEE:</p>
                         <div class="table-responsive">
                             <table class="seo-table">
                                 <thead>
@@ -404,25 +1266,22 @@
 
                         <div class="faq-item">
                             <h4>1. How do I use my TDEE to lose or gain weight?</h4>
-                            <p>Your TDEE represents your maintenance calories. To lose weight (cut), you must consume
-                                fewer calories than your TDEE (typically a 300-500 calorie deficit). To gain weight or
-                                build muscle (bulk), you need to consume more calories than your TDEE (a 300-500 calorie
-                                surplus).</p>
+                            <p>Your TDEE is the number of calories you need to maintain your current weight. For weight
+                                loss, consume fewer calories than your TDEE. For weight gain, eat more calories than
+                                your TDEE.</p>
                         </div>
 
                         <div class="faq-item">
-                            <h4>2. What is the difference between BMR and TDEE?</h4>
-                            <p>BMR (Basal Metabolic Rate) is the number of calories your body burns at complete rest
-                                just to keep essential functions running (like breathing and blood circulation). TDEE
-                                takes your BMR and adds the calories you burn through daily movement, exercise, and
-                                digesting food.</p>
+                            <h4>2. Can TDEE be used for muscle gain?</h4>
+                            <p>Yes. If you want to build muscle, aim for a modest calorie surplus above your TDEE while
+                                supporting your training with enough protein and resistance exercise.</p>
                         </div>
 
                         <div class="faq-item">
-                            <h4>3. How often should I recalculate my TDEE?</h4>
-                            <p>You should recalculate your TDEE every time you lose or gain about 2 to 5 kg (5-10 lbs),
-                                or if your daily activity routine changes significantly. As your total body mass
-                                changes, your daily energy requirements change with it.</p>
+                            <h4>3. Does this calculator work for older adults?</h4>
+                            <p>The formula is a good estimate for most adults, including older adults. However, as
+                                metabolism changes with age, recalculating after significant weight changes or activity
+                                shifts is helpful.</p>
                         </div>
 
                     </div>

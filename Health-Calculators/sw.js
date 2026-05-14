@@ -5,7 +5,7 @@
  * If you do not update this version, the app will continue serving outdated offline files to users.
  */
 
-const CACHE_NAME = 'healthcalc-v2.2';
+const CACHE_NAME = 'healthcalc-v3';
 const urlsToCache = [
     './',
     './index.html',

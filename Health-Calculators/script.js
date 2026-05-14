@@ -2,11 +2,23 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // --- Dark Mode Toggle Logic ---
     const themeToggleBtn = document.getElementById('theme-toggle');
-    const themeIcon = themeToggleBtn.querySelector('i');
-    const themeText = themeToggleBtn.querySelector('span');
+    let themeIcon = null;
+    let themeText = null;
+
+    if (themeToggleBtn) {
+        themeIcon = themeToggleBtn.querySelector('i');
+        themeText = themeToggleBtn.querySelector('span');
+    }
+
+    function getRadioValue(name, defaultValue = 'male') {
+        const checkedRadio = document.querySelector(`input[name="${name}"]:checked`);
+        return checkedRadio ? checkedRadio.value : defaultValue;
+    }
 
     // Function to update UI based on theme
     function applyTheme(isDark) {
+        if (!themeIcon || !themeText) return;
+
         if (isDark) {
             document.body.classList.add('dark-mode');
             themeIcon.classList.remove('fa-moon');
@@ -106,8 +118,13 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
-    // App load hote hi default Home state history me daal do
-    window.history.replaceState({ viewId: 'dashboard' }, '', window.location.pathname);
+    // App load hote hi initial view set karo, URL hash se
+    const validViews = Array.from(navItems).map(item => item.getAttribute('data-nav'));
+    const initialHash = window.location.hash.replace('#', '').trim();
+    const initialView = validViews.includes(initialHash) ? initialHash : 'dashboard';
+    switchView(initialView, false);
+    const initialUrl = initialHash ? `#${initialView}` : window.location.pathname;
+    window.history.replaceState({ viewId: initialView }, '', initialUrl);
 
 
     // Dashboard Cards pe click event
@@ -181,7 +198,7 @@ document.addEventListener('DOMContentLoaded', () => {
             const activityMultiplier = parseFloat(document.getElementById('tdee-activity').value);
 
             // Get selected radio button value
-            const gender = document.querySelector('input[name="tdee-gender"]:checked').value;
+            const gender = getRadioValue('tdee-gender', 'male');
 
             // Validation
             if (!age || !weight || !height || age < 15 || age > 80 || weight <= 0 || height <= 0) {
@@ -209,6 +226,256 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
+    // --- BMR Calculator Logic ---
+    const calcBmrBtn = document.getElementById('calc-bmr-btn');
+
+    if (calcBmrBtn) {
+        calcBmrBtn.addEventListener('click', () => {
+            const gender = getRadioValue('bmr-gender', 'male');
+            const age = parseInt(document.getElementById('bmr-age').value);
+            const weight = parseFloat(document.getElementById('bmr-weight').value);
+            const height = parseFloat(document.getElementById('bmr-height').value);
+
+            if (!age || !weight || !height || age <= 0 || weight <= 0 || height <= 0) {
+                alert('Please enter valid positive values for age, weight, and height.');
+                return;
+            }
+
+            let bmr;
+            if (gender === 'male') {
+                bmr = (10 * weight) + (6.25 * height) - (5 * age) + 5;
+            } else {
+                bmr = (10 * weight) + (6.25 * height) - (5 * age) - 161;
+            }
+
+            const resultBox = document.getElementById('bmr-result');
+            document.getElementById('bmr-value').innerText = Math.round(bmr).toLocaleString();
+            resultBox.classList.remove('hidden');
+        });
+    }
+
+    // --- Calorie Calculator Logic ---
+    const calcCalorieBtn = document.getElementById('calc-calorie-btn');
+
+    if (calcCalorieBtn) {
+        calcCalorieBtn.addEventListener('click', () => {
+            const gender = getRadioValue('calorie-gender', 'male');
+            const age = parseInt(document.getElementById('calorie-age').value);
+            const weight = parseFloat(document.getElementById('calorie-weight').value);
+            const height = parseFloat(document.getElementById('calorie-height').value);
+            const activityMultiplier = parseFloat(document.getElementById('calorie-activity').value);
+            const goal = document.getElementById('calorie-goal').value;
+
+            if (!age || !weight || !height || age <= 0 || weight <= 0 || height <= 0) {
+                alert('Please enter valid positive values for age, weight, and height.');
+                return;
+            }
+
+            // Calculate BMR
+            let bmr;
+            if (gender === 'male') {
+                bmr = (10 * weight) + (6.25 * height) - (5 * age) + 5;
+            } else {
+                bmr = (10 * weight) + (6.25 * height) - (5 * age) - 161;
+            }
+
+            // Calculate TDEE
+            const tdee = bmr * activityMultiplier;
+
+            // Adjust for goal
+            let calories;
+            switch (goal) {
+                case 'maintain':
+                    calories = tdee;
+                    break;
+                case 'lose':
+                    calories = tdee - 500; // 1 lb/week loss
+                    break;
+                case 'lose-fast':
+                    calories = tdee - 1000; // 2 lbs/week loss
+                    break;
+                case 'gain':
+                    calories = tdee + 500; // 1 lb/week gain
+                    break;
+                case 'gain-fast':
+                    calories = tdee + 1000; // 2 lbs/week gain
+                    break;
+                default:
+                    calories = tdee;
+            }
+
+            const resultBox = document.getElementById('calorie-result');
+            document.getElementById('calorie-value').innerText = Math.round(calories).toLocaleString();
+            resultBox.classList.remove('hidden');
+        });
+    }
+
+    // --- Macro Calculator Logic ---
+    const calcMacroBtn = document.getElementById('calc-macro-btn');
+
+    if (calcMacroBtn) {
+        calcMacroBtn.addEventListener('click', () => {
+            const calories = parseFloat(document.getElementById('macro-calories').value);
+            const goal = document.getElementById('macro-goal').value;
+
+            if (!calories || calories <= 0) {
+                alert('Please enter a valid positive number for daily calories.');
+                return;
+            }
+
+            // Define macro splits based on goal
+            let proteinPercent, carbPercent, fatPercent;
+            switch (goal) {
+                case 'balanced':
+                    proteinPercent = 0.30;
+                    carbPercent = 0.40;
+                    fatPercent = 0.30;
+                    break;
+                case 'high-protein':
+                    proteinPercent = 0.40;
+                    carbPercent = 0.30;
+                    fatPercent = 0.30;
+                    break;
+                case 'low-carb':
+                    proteinPercent = 0.40;
+                    carbPercent = 0.20;
+                    fatPercent = 0.40;
+                    break;
+                case 'keto':
+                    proteinPercent = 0.20;
+                    carbPercent = 0.10;
+                    fatPercent = 0.70;
+                    break;
+                case 'cutting':
+                    proteinPercent = 0.30;
+                    carbPercent = 0.50;
+                    fatPercent = 0.20;
+                    break;
+                case 'bulking':
+                    proteinPercent = 0.25;
+                    carbPercent = 0.60;
+                    fatPercent = 0.15;
+                    break;
+                default:
+                    proteinPercent = 0.30;
+                    carbPercent = 0.40;
+                    fatPercent = 0.30;
+            }
+
+            // Calculate calories for each macro
+            const proteinCalories = calories * proteinPercent;
+            const carbCalories = calories * carbPercent;
+            const fatCalories = calories * fatPercent;
+
+            // Convert to grams (Protein/Carbs: 4 kcal/g, Fat: 9 kcal/g)
+            const proteinGrams = Math.round(proteinCalories / 4);
+            const carbGrams = Math.round(carbCalories / 4);
+            const fatGrams = Math.round(fatCalories / 9);
+
+            // Update UI
+            document.getElementById('protein-grams').innerText = proteinGrams + 'g';
+            document.getElementById('protein-calories').innerText = Math.round(proteinCalories) + ' kcal';
+
+            document.getElementById('carbs-grams').innerText = carbGrams + 'g';
+            document.getElementById('carbs-calories').innerText = Math.round(carbCalories) + ' kcal';
+
+            document.getElementById('fat-grams').innerText = fatGrams + 'g';
+            document.getElementById('fat-calories').innerText = Math.round(fatCalories) + ' kcal';
+
+            const resultBox = document.getElementById('macro-result');
+            resultBox.classList.remove('hidden');
+        });
+    }
+
+    // --- Water Intake Calculator Logic ---
+    const calcWaterBtn = document.getElementById('calc-water-btn');
+
+    if (calcWaterBtn) {
+        calcWaterBtn.addEventListener('click', () => {
+            const weight = parseFloat(document.getElementById('water-weight').value);
+            const activityMultiplier = parseFloat(document.getElementById('water-activity').value);
+            const climateMultiplier = parseFloat(document.getElementById('water-climate').value);
+
+            if (!weight || weight <= 0) {
+                alert('Please enter a valid positive weight.');
+                return;
+            }
+
+            // Base calculation: 30 ml per kg
+            const baseWater = weight * 30;
+
+            // Apply multipliers
+            const totalWater = Math.round(baseWater * activityMultiplier * climateMultiplier);
+
+            const resultBox = document.getElementById('water-result');
+            document.getElementById('water-value').innerText = totalWater.toLocaleString();
+            resultBox.classList.remove('hidden');
+        });
+    }
+
+    // --- Protein Intake Calculator Logic ---
+    const calcProteinBtn = document.getElementById('calc-protein-btn');
+
+    if (calcProteinBtn) {
+        calcProteinBtn.addEventListener('click', () => {
+            const weight = parseFloat(document.getElementById('protein-weight').value);
+            const activityMultiplier = parseFloat(document.getElementById('protein-activity').value);
+            const goalMultiplier = parseFloat(document.getElementById('protein-goal').value);
+
+            if (!weight || weight <= 0) {
+                alert('Please enter a valid positive weight.');
+                return;
+            }
+
+            // Base calculation: 0.8 g per kg (RDA)
+            const baseProtein = weight * 0.8;
+
+            // Apply multipliers
+            const totalProtein = Math.round(baseProtein * activityMultiplier * goalMultiplier);
+
+            const resultBox = document.getElementById('protein-result');
+            document.getElementById('protein-value').innerText = totalProtein.toLocaleString();
+            resultBox.classList.remove('hidden');
+        });
+    }
+
+    // --- Ideal Weight Calculator Logic ---
+    const calcIdealWeightBtn = document.getElementById('calc-ideal-weight-btn');
+
+    if (calcIdealWeightBtn) {
+        calcIdealWeightBtn.addEventListener('click', () => {
+            const height = parseFloat(document.getElementById('ideal-height').value);
+            const gender = getRadioValue('ideal-gender', 'male');
+
+            if (!height || height <= 0) {
+                alert('Please enter a valid positive height.');
+                return;
+            }
+
+            const heightMeters = height / 100;
+            const lowIdeal = 18.5 * heightMeters * heightMeters;
+            const highIdeal = 24.9 * heightMeters * heightMeters;
+
+            let devineWeight;
+            if (height > 152.4) {
+                const extraInches = (height - 152.4) / 2.54;
+                devineWeight = gender === 'male'
+                    ? 50 + (2.3 * extraInches)
+                    : 45.5 + (2.3 * extraInches);
+            } else {
+                devineWeight = gender === 'male' ? 50 : 45.5;
+            }
+
+            const resultRange = `${Math.round(lowIdeal * 10) / 10} - ${Math.round(highIdeal * 10) / 10}`;
+            const targetWeight = `${Math.round(devineWeight * 10) / 10} kg`;
+
+            const resultBox = document.getElementById('ideal-weight-result');
+            document.getElementById('ideal-weight-range').innerText = resultRange;
+            document.getElementById('ideal-weight-note').innerText = `Estimated target weight using the Devine formula: ${targetWeight}. Adjust as needed for body composition.`;
+            resultBox.classList.remove('hidden');
+        });
+    }
+
     // --- Body Fat Calculator Logic ---
     const bfGenderRadios = document.querySelectorAll('input[name="bf-gender"]');
     const hipsContainer = document.getElementById('hips-container');
@@ -227,7 +494,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     if (calcBfBtn) {
         calcBfBtn.addEventListener('click', () => {
-            const gender = document.querySelector('input[name="bf-gender"]:checked').value;
+            const gender = getRadioValue('bf-gender', 'male');
             const height = parseFloat(document.getElementById('bf-height').value);
             const neck = parseFloat(document.getElementById('bf-neck').value);
             const waist = parseFloat(document.getElementById('bf-waist').value);
@@ -333,9 +600,13 @@ document.addEventListener('DOMContentLoaded', () => {
         // Event ko save kar lo taaki button click hone par use kar sakein
         deferredPrompt = e;
 
-        // Apna custom button show kar do
+        // Only show install button on mobile view
         if (installBtn) {
-            installBtn.style.display = 'block';
+            if (window.innerWidth <= 768) {
+                installBtn.style.display = 'block';
+            } else {
+                installBtn.style.display = 'none';
+            }
         }
     });
 
