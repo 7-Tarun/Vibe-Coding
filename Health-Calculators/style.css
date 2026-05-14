@@ -692,4 +692,7 @@ select:focus {
         color: var(--text-primary) !important;
     }
 
+    .bottom-bar {
+        border-top: none;
+    }
 }
