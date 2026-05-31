@@ -1,0 +1,186 @@
+/* --- CSS Variables & Reset --- */
+:root {
+    --bg-dark: #121212;
+    --bg-darker: #0a0a0a;
+    --accent-green: #4CAF50;
+    --accent-hover: #45a049;
+    --text-main: #FFFFFF;
+    --text-muted: #AAAAAA;
+    --text-meta: #666666;
+    --icon-bg: #111111; /* Pure black for icon container */
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    background-color: var(--bg-dark);
+    color: var(--text-main);
+    line-height: 1.6;
+}
+
+/* --- Header --- */
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 5%;
+    background-color: var(--bg-darker);
+    border-bottom: 1px solid #222;
+}
+
+.brand {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.icon-container {
+    background-color: var(--icon-bg);
+    width: 48px;
+    height: 48px;
+    border-radius: 12px; /* Squircle look */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    border: 1px solid #333;
+}
+
+.app-icon {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+.brand-name {
+    font-size: 20px;
+    font-weight: bold;
+    letter-spacing: 0.5px;
+}
+
+.version-badge {
+    background-color: #222;
+    color: var(--text-muted);
+    padding: 4px 10px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 600;
+}
+
+/* --- Hero Section --- */
+.hero {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 40px;
+    padding: 60px 5%;
+    max-width: 1200px;
+    margin: 0 auto;
+    align-items: center;
+}
+
+.hero-content h1 {
+    font-size: 2.5rem;
+    line-height: 1.2;
+    margin-bottom: 20px;
+}
+
+.hero-content .highlight {
+    color: var(--accent-green);
+}
+
+.tagline {
+    color: var(--text-muted);
+    font-size: 1.1rem;
+    margin-bottom: 32px;
+    max-width: 90%;
+}
+
+.btn-download {
+    display: inline-block;
+    background-color: var(--accent-green);
+    color: var(--text-main);
+    padding: 16px 36px;
+    border-radius: 16px;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 1.1rem;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(76, 175, 80, 0.2);
+}
+
+.btn-download:hover {
+    background-color: var(--accent-hover);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(76, 175, 80, 0.4);
+}
+
+.metadata {
+    margin-top: 16px;
+    font-size: 0.85rem;
+    color: var(--text-meta);
+}
+
+/* --- Smartphone Mockup --- */
+.hero-visual {
+    display: flex;
+    justify-content: center;
+}
+
+.smartphone-mockup {
+    width: 280px;
+    height: 580px;
+    border: 12px solid #222;
+    border-radius: 36px;
+    background-color: #000;
+    overflow: hidden;
+    box-shadow: 0 20px 40px rgba(0,0,0,0.6);
+    position: relative;
+}
+
+.smartphone-mockup::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 120px;
+    height: 24px;
+    background-color: #222;
+    border-bottom-left-radius: 12px;
+    border-bottom-right-radius: 12px;
+    z-index: 2;
+}
+
+.screenshot-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* --- SEO Placeholder --- */
+.seo-article-placeholder {
+    padding: 60px 5%;
+    max-width: 900px;
+    margin: 0 auto;
+    border-top: 1px solid #222;
+    min-height: 200px; /* Temporary height until content is added */
+}
+
+/* --- Desktop Layout (Media Query) --- */
+@media (min-width: 768px) {
+    .hero {
+        grid-template-columns: 1fr 1fr;
+        padding: 100px 5%;
+    }
+    .hero-content h1 {
+        font-size: 3.5rem;
+    }
+    .tagline {
+        font-size: 1.25rem;
+    }
+}
