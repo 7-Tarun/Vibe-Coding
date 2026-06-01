@@ -34,9 +34,22 @@
                 style="background-color: #1a1a1a; padding: 30px; border-radius: 12px; border: 1px solid #333; text-align: center; margin-top: 30px;">
                 <h3 style="color: #4CAF50; margin-bottom: 15px;">Get In Touch</h3>
                 <p style="margin-bottom: 20px;">Email us directly for support or inquiries:</p>
-                <a href="3dr"
-                    style="background-color: #4CAF50; color: #fff; padding: 12px 24px; text-decoration: none; border-radius: 8px; font-weight: bold; display: inline-block;">Email
-                    Support</a>
+                <!-- Empty container jahan JS button inject karega -->
+                <div id="secure-email-container"></div>
+
+                <script>
+                    // Secured Email to hide from bots.
+                    var user = "contact.tarundev";
+                    var domain = "gmail.com";
+                    var fullEmail = user + "@" + domain;
+
+                    // Tera exact button design with inline CSS
+                    var buttonHTML = '<a href="mailto:' + fullEmail + '" style="background-color: #4CAF50; color: #fff; padding: 12px 24px; text-decoration: none; border-radius: 8px; font-weight: bold; display: inline-block;">Email Support</a>';
+
+                    // Injecting the secure button into the HTML
+                    document.getElementById("secure-email-container").innerHTML = buttonHTML;
+                </script>
+
             </div>
         </main>
 
