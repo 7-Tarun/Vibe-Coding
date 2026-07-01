@@ -22,7 +22,7 @@ A free, no-signup health & fitness calculator hub — all your everyday health t
 - Water Intake Calculator
 - Protein Intake, Ideal Weight, Body Fat % *(more tools planned)*
 
-More calculators are being added over time, and an installable (PWA) version is planned so you can use it like a native app.
+More calculators are being added over time.
 
 ---
 
