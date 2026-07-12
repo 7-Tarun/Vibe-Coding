@@ -2,7 +2,7 @@
 
 A collection of vibe-coded projects — small tools and apps built for fun, practice, and actual daily use. Each project lives in its own folder inside this single repo.
 
-🔗 Live: [7-tarun.github.io/Vibe-Coding](https://7-tarun.github.io/Vibe-Coding/)
+🔗 Live: [7-tarun.github.io/Vibe-Coding](https://7-tarun.github.io/)
 
 ---
 
