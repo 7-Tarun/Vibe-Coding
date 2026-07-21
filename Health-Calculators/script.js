@@ -1,3 +1,42 @@
+// ============================================
+// PWA UPDATE DETECTION - Forces users to get latest version
+// ============================================
+if ('serviceWorker' in navigator) {
+    // Listen for new service worker taking over
+    navigator.serviceWorker.addEventListener('controllerchange', () => {
+        // New service worker has activated - reload to get fresh content
+        window.location.reload();
+    });
+
+    // Register service worker with update check
+    window.addEventListener('load', () => {
+        navigator.serviceWorker.register('./sw.js')
+            .then(registration => {
+                console.log('ServiceWorker registered successfully.');
+
+                // Check for updates every time page loads
+                registration.update();
+
+                // Listen for waiting service worker
+                registration.addEventListener('updatefound', () => {
+                    const newWorker = registration.installing;
+                    console.log('New service worker found, installing...');
+
+                    newWorker.addEventListener('statechange', () => {
+                        if (newWorker.state === 'installed' && navigator.serviceWorker.controller) {
+                            // New version available - tell it to skip waiting
+                            console.log('New version installed, activating...');
+                            newWorker.postMessage({ type: 'SKIP_WAITING' });
+                        }
+                    });
+                });
+            })
+            .catch(err => {
+                console.log('ServiceWorker registration failed: ', err);
+            });
+    });
+}
+
 document.addEventListener('DOMContentLoaded', () => {
 
     // --- Dark Mode Toggle Logic ---
@@ -715,16 +754,3 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
 });
-
-// PWA Service Worker Registration
-if ('serviceWorker' in navigator) {
-    window.addEventListener('load', () => {
-        navigator.serviceWorker.register('./sw.js')
-            .then(registration => {
-                console.log('ServiceWorker registered successfully.');
-            })
-            .catch(err => {
-                console.log('ServiceWorker registration failed: ', err);
-            });
-    });
-}
