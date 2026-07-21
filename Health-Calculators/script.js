@@ -157,6 +157,12 @@ document.addEventListener('DOMContentLoaded', () => {
             if (!weight || !heightCm || weight <= 0 || heightCm <= 0) {
                 alert("Please enter valid positive numbers for Weight and Height.");
                 return;
+            } else if (weight < 20 || weight > 500) {
+                alert("Weight must be between 20 and 500 kg.");
+                return;
+            } else if (heightCm < 50 || heightCm > 250) {
+                alert("Height must be between 50 and 250 cm.");
+                return;
             }
 
             // Formula Calculation
@@ -211,6 +217,12 @@ document.addEventListener('DOMContentLoaded', () => {
             if (!age || !weight || !height || age < 15 || age > 80 || weight <= 0 || height <= 0) {
                 alert("Please enter valid inputs. Age must be between 15 and 80.");
                 return;
+            } else if (weight < 20 || weight > 500) {
+                alert("Weight must be between 20 and 500 kg.");
+                return;
+            } else if (height < 50 || height > 250) {
+                alert("Height must be between 50 and 250 cm.");
+                return;
             }
 
             // Step 1: Calculate BMR (Mifflin-St Jeor Equation)
@@ -246,6 +258,12 @@ document.addEventListener('DOMContentLoaded', () => {
             if (!age || !weight || !height || age <= 0 || weight <= 0 || height <= 0) {
                 alert('Please enter valid positive values for age, weight, and height.');
                 return;
+            } else if (weight < 20 || weight > 500) {
+                alert('Weight must be between 20 and 500 kg.');
+                return;
+            } else if (height < 50 || height > 250) {
+                alert('Height must be between 50 and 250 cm.');
+                return;
             }
 
             let bmr;
@@ -275,6 +293,12 @@ document.addEventListener('DOMContentLoaded', () => {
 
             if (!age || !weight || !height || age <= 0 || weight <= 0 || height <= 0) {
                 alert('Please enter valid positive values for age, weight, and height.');
+                return;
+            } else if (weight < 20 || weight > 500) {
+                alert('Weight must be between 20 and 500 kg.');
+                return;
+            } else if (height < 50 || height > 250) {
+                alert('Height must be between 50 and 250 cm.');
                 return;
             }
 
@@ -327,6 +351,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
             if (!calories || calories <= 0) {
                 alert('Please enter a valid positive number for daily calories.');
+                return;
+            } else if (calories < 500 || calories > 10000) {
+                alert('Calories must be between 500 and 10000 kcal.');
                 return;
             }
 
@@ -406,6 +433,9 @@ document.addEventListener('DOMContentLoaded', () => {
             if (!weight || weight <= 0) {
                 alert('Please enter a valid positive weight.');
                 return;
+            } else if (weight < 20 || weight > 500) {
+                alert('Weight must be between 20 and 500 kg.');
+                return;
             }
 
             // Base calculation: 30 ml per kg
@@ -432,6 +462,9 @@ document.addEventListener('DOMContentLoaded', () => {
             if (!weight || weight <= 0) {
                 alert('Please enter a valid positive weight.');
                 return;
+            } else if (weight < 20 || weight > 500) {
+                alert('Weight must be between 20 and 500 kg.');
+                return;
             }
 
             // Base calculation: 0.8 g per kg (RDA)
@@ -456,6 +489,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
             if (!height || height <= 0) {
                 alert('Please enter a valid positive height.');
+                return;
+            } else if (height < 50 || height > 250) {
+                alert('Height must be between 50 and 250 cm.');
                 return;
             }
 
@@ -509,6 +545,18 @@ document.addEventListener('DOMContentLoaded', () => {
 
             if (!height || !neck || !waist || (gender === 'female' && !hips)) {
                 alert("Please fill all measurement fields correctly.");
+                return;
+            } else if (height < 50 || height > 250) {
+                alert("Height must be between 50 and 250 cm.");
+                return;
+            } else if (neck < 20 || neck > 80) {
+                alert("Neck must be between 20 and 80 cm.");
+                return;
+            } else if (waist < 40 || waist > 200) {
+                alert("Waist must be between 40 and 200 cm.");
+                return;
+            } else if (gender === 'female' && (hips < 40 || hips > 200)) {
+                alert("Hips must be between 40 and 200 cm.");
                 return;
             }
 

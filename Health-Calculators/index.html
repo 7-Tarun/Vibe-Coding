@@ -269,11 +269,11 @@
                         </div>
                         <div class="input-group">
                             <label for="calorie-weight">Weight (kg)</label>
-                            <input type="number" id="calorie-weight" placeholder="e.g., 70" required>
+                            <input type="number" id="calorie-weight" placeholder="e.g., 70" min="20" max="500" required>
                         </div>
                         <div class="input-group">
                             <label for="calorie-height">Height (cm)</label>
-                            <input type="number" id="calorie-height" placeholder="e.g., 175" required>
+                            <input type="number" id="calorie-height" placeholder="e.g., 175" min="50" max="250" required>
                         </div>
 
                         <div class="input-group full-width">
@@ -400,11 +400,11 @@
                     <div class="form-grid">
                         <div class="input-group">
                             <label for="bmi-weight">Weight (kg)</label>
-                            <input type="number" id="bmi-weight" placeholder="e.g., 70" required>
+                            <input type="number" id="bmi-weight" placeholder="e.g., 70" min="20" max="500" required>
                         </div>
                         <div class="input-group">
                             <label for="bmi-height">Height (cm)</label>
-                            <input type="number" id="bmi-height" placeholder="e.g., 175" required>
+                            <input type="number" id="bmi-height" placeholder="e.g., 175" min="50" max="250" required>
                         </div>
                     </div>
 
@@ -528,7 +528,7 @@
                     <div class="form-grid">
                         <div class="input-group full-width">
                             <label for="macro-calories">Daily Calories</label>
-                            <input type="number" id="macro-calories" placeholder="e.g., 2500" required>
+                            <input type="number" id="macro-calories" placeholder="e.g., 2500" min="500" max="10000" required>
                         </div>
 
                         <div class="input-group full-width">
@@ -667,7 +667,7 @@
                     <div class="form-grid">
                         <div class="input-group full-width">
                             <label for="water-weight">Weight (kg)</label>
-                            <input type="number" id="water-weight" placeholder="e.g., 70" required>
+                            <input type="number" id="water-weight" placeholder="e.g., 70" min="20" max="500" required>
                         </div>
 
                         <div class="input-group full-width">
@@ -797,7 +797,7 @@
                     <div class="form-grid">
                         <div class="input-group full-width">
                             <label for="protein-weight">Weight (kg)</label>
-                            <input type="number" id="protein-weight" placeholder="e.g., 70" required>
+                            <input type="number" id="protein-weight" placeholder="e.g., 70" min="20" max="500" required>
                         </div>
 
                         <div class="input-group full-width">
@@ -947,7 +947,7 @@
 
                         <div class="input-group full-width">
                             <label for="ideal-height">Height (cm)</label>
-                            <input type="number" id="ideal-height" placeholder="e.g., 175" required>
+                            <input type="number" id="ideal-height" placeholder="e.g., 175" min="50" max="250" required>
                         </div>
                     </div>
 
@@ -1059,11 +1059,11 @@
                         </div>
                         <div class="input-group">
                             <label for="bmr-weight">Weight (kg)</label>
-                            <input type="number" id="bmr-weight" placeholder="e.g., 70" required>
+                            <input type="number" id="bmr-weight" placeholder="e.g., 70" min="20" max="500" required>
                         </div>
                         <div class="input-group">
                             <label for="bmr-height">Height (cm)</label>
-                            <input type="number" id="bmr-height" placeholder="e.g., 175" required>
+                            <input type="number" id="bmr-height" placeholder="e.g., 175" min="50" max="250" required>
                         </div>
                     </div>
 
@@ -1169,11 +1169,11 @@
                         </div>
                         <div class="input-group">
                             <label for="tdee-weight">Weight (kg)</label>
-                            <input type="number" id="tdee-weight" placeholder="e.g., 70" required>
+                            <input type="number" id="tdee-weight" placeholder="e.g., 70" min="20" max="500" required>
                         </div>
                         <div class="input-group">
                             <label for="tdee-height">Height (cm)</label>
-                            <input type="number" id="tdee-height" placeholder="e.g., 175" required>
+                            <input type="number" id="tdee-height" placeholder="e.g., 175" min="50" max="250" required>
                         </div>
 
                         <div class="input-group full-width">
@@ -1309,20 +1309,20 @@
 
                         <div class="input-group">
                             <label for="bf-height">Height (cm)</label>
-                            <input type="number" id="bf-height" placeholder="e.g., 175" required>
+                            <input type="number" id="bf-height" placeholder="e.g., 175" min="50" max="250" required>
                         </div>
                         <div class="input-group">
                             <label for="bf-neck">Neck (cm)</label>
-                            <input type="number" id="bf-neck" placeholder="At narrowest point" required>
+                            <input type="number" id="bf-neck" placeholder="At narrowest point" min="20" max="80" required>
                         </div>
                         <div class="input-group">
                             <label for="bf-waist">Waist (cm)</label>
-                            <input type="number" id="bf-waist" placeholder="At navel" required>
+                            <input type="number" id="bf-waist" placeholder="At navel" min="40" max="200" required>
                         </div>
 
                         <div id="hips-container" class="input-group hidden">
                             <label for="bf-hips">Hips (cm)</label>
-                            <input type="number" id="bf-hips" placeholder="At widest point">
+                            <input type="number" id="bf-hips" placeholder="At widest point" min="40" max="200">
                         </div>
                     </div>
 
