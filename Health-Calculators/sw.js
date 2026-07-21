@@ -50,8 +50,8 @@ self.addEventListener('message', event => {
 self.addEventListener('fetch', event => {
     const request = event.request;
 
-    // Skip non-GET requests
-    if (request.method !== 'GET') return;
+    // Skip non-GET requests and non-http schemes (chrome-extension:, data:, etc.)
+    if (request.method !== 'GET' || !request.url.startsWith('http')) return;
 
     if (request.mode === 'navigate') {
         // ✅ FIX: Always try network first, with proper fallback chain
@@ -84,7 +84,6 @@ self.addEventListener('fetch', event => {
     }
 
     // For static assets (CSS, JS, images): Network-first with cache fallback
-    // ✅ CHANGED: Was cache-first, now network-first for ALL files
     event.respondWith(
         fetch(request)
             .then(response => {
