@@ -195,6 +195,8 @@ body {
 .view-section {
     display: none;
     animation: fadeIn 0.4s ease-in-out;
+    scroll-behavior: auto;        
+    scroll-margin-top: 0;
 }
 
 .view-section.active {

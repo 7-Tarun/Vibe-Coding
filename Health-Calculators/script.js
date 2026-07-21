@@ -85,6 +85,13 @@ document.addEventListener('DOMContentLoaded', () => {
             targetSection.classList.add('active');
         }
 
+        const mainContent = document.querySelector('.main-content');
+        if (mainContent) {
+            mainContent.scrollTop = 0;
+        }
+        // Also reset window scroll as a safety net
+        window.scrollTo(0, 0);
+
         // 5. Update Browser History Stack (Back Button Magic)
         if (updateHistory) {
             window.history.pushState({ viewId: targetViewId }, '', `#${targetViewId}`);
