@@ -15,6 +15,22 @@ document.addEventListener('DOMContentLoaded', () => {
         return checkedRadio ? checkedRadio.value : defaultValue;
     }
 
+    function getStoredTheme() {
+        try {
+            return localStorage.getItem('appTheme');
+        } catch (error) {
+            return null;
+        }
+    }
+
+    function setStoredTheme(theme) {
+        try {
+            localStorage.setItem('appTheme', theme);
+        } catch (error) {
+            // Ignore storage errors and continue safely
+        }
+    }
+
     // Function to update UI based on theme
     function applyTheme(isDark) {
         if (!themeIcon || !themeText) return;
@@ -24,18 +40,18 @@ document.addEventListener('DOMContentLoaded', () => {
             themeIcon.classList.remove('fa-moon');
             themeIcon.classList.add('fa-sun');
             themeText.innerText = 'Light Mode';
-            localStorage.setItem('appTheme', 'dark');
+            setStoredTheme('dark');
         } else {
             document.body.classList.remove('dark-mode');
             themeIcon.classList.remove('fa-sun');
             themeIcon.classList.add('fa-moon');
             themeText.innerText = 'Dark Mode';
-            localStorage.setItem('appTheme', 'light');
+            setStoredTheme('light');
         }
     }
 
     // 1. Check LocalStorage on initial load
-    const savedTheme = localStorage.getItem('appTheme');
+    const savedTheme = getStoredTheme();
     if (savedTheme === 'dark') {
         applyTheme(true);
     }
