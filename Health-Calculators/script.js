@@ -753,4 +753,54 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
 
+    // ============================================
+    // SMART MOBILE HEADER - Hide on scroll down, show on scroll up
+    // ============================================
+    (function initSmartHeader() {
+        const mobileHeader = document.querySelector('.mobile-header');
+        const mainContent = document.querySelector('.main-content');
+
+        // Only run on mobile + if elements exist
+        if (!mobileHeader || !mainContent) return;
+
+        let lastScrollY = 0;          // Last scroll position
+        let ticking = false;          // rAF throttle flag
+        const SCROLL_THRESHOLD = 10;  // Min pixels to trigger hide/show (prevents jitter)
+
+        function updateHeader() {
+            const currentScrollY = mainContent.scrollTop;
+
+            // ✅ Always show header when at the very top
+            if (currentScrollY <= 0) {
+                mobileHeader.classList.remove('header-hidden');
+                mobileHeader.classList.add('header-visible');
+            }
+            // ✅ Hide when scrolling DOWN
+            else if (currentScrollY > lastScrollY && currentScrollY > SCROLL_THRESHOLD) {
+                mobileHeader.classList.add('header-hidden');
+                mobileHeader.classList.remove('header-visible');
+            }
+            // ✅ Show when scrolling UP
+            else if (currentScrollY < lastScrollY) {
+                mobileHeader.classList.remove('header-hidden');
+                mobileHeader.classList.add('header-visible');
+            }
+
+            lastScrollY = currentScrollY;
+            ticking = false;
+        }
+
+        // Listen to scroll on the scrollable container (NOT window)
+        mainContent.addEventListener('scroll', () => {
+            if (!ticking) {
+                requestAnimationFrame(updateHeader);
+                ticking = true;
+            }
+        }, { passive: true });  // passive = better scroll performance
+
+        // Optional: Re-check on resize (in case of orientation change)
+        window.addEventListener('resize', () => {
+            lastScrollY = mainContent.scrollTop;
+        });
+    })();
 });

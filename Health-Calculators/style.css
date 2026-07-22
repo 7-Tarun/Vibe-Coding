@@ -192,11 +192,12 @@ body {
     display: flex;
     flex-direction: column;
 }
+
 /* --- View Switching Logic --- */
 .view-section {
     display: none;
     animation: fadeIn 0.4s ease-in-out;
-    scroll-behavior: auto;        
+    scroll-behavior: auto;
     scroll-margin-top: 0;
 }
 
@@ -958,19 +959,14 @@ select:focus {
         display: block;
     }
 
-    /* Sidebar ko Off-canvas Menu banayein */
     .sidebar {
         position: fixed;
-        /* Flow se bahar nikal kar fixed karein */
         top: 0;
         left: -100%;
-        /* Default hidden (screen ke left mein) */
         height: 100dvh;
         transition: left 0.3s ease-in-out;
-        /* Smooth slide animation */
         box-shadow: var(--shadow-lg);
-        z-index: 50;
-        /* Sabse upar dikhane ke liye */
+        z-index: 999;
     }
 
     /* Ye class JS se add/remove hogi */
@@ -1006,5 +1002,68 @@ select:focus {
 
     .bottom-bar {
         border-top: none;
+    }
+
+    /* ============================================
+   SMART MOBILE HEADER - Hide on scroll down, show on scroll up
+   ============================================ */
+
+    .mobile-header {
+        position: fixed;
+        top: var(--spacing-md);
+        left: var(--spacing-md);
+        right: var(--spacing-md);
+        z-index: 100;
+ 
+        background-color: rgba(255, 255, 255, 0.75);
+        backdrop-filter: blur(12px);
+        -webkit-backdrop-filter: blur(12px);
+        border-bottom: 1px solid rgba(229, 231, 235, 0.5);
+        border-radius: 8px;
+
+        padding: var(--spacing-sm) var(--spacing-md);
+
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        box-shadow: var(--shadow-sm);
+
+        transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+        will-change: transform;
+    }
+
+    /* Dark mode adjustment */
+    body.dark-mode .mobile-header,
+    html.dark-mode .mobile-header {
+        background-color: rgba(31, 41, 55, 0.75);
+        border-bottom-color: rgba(55, 65, 81, 0.5);
+    }
+
+    /* When scrolling DOWN, hide the header completely */
+    .mobile-header.header-hidden {
+        transform: translateY(-150%);
+        /* ✅ Slightly more than -100% to fully clear */
+        box-shadow: none;
+    }
+
+    /* When scrolling UP, show the header with shadow */
+    .mobile-header.header-visible {
+        transform: translateY(0);
+        box-shadow: var(--shadow-sm);
+    }
+
+    /* ✅ Adjust main-content padding on mobile so content doesn't hide behind fixed header */
+    @media (max-width: 768px) {
+        .main-content {
+            padding-top: calc(var(--spacing-md) + 70px);
+        }
+    }
+
+    /* Disable animation on desktop */
+    @media (min-width: 769px) {
+        .mobile-header {
+            transition: none !important;
+            transform: none !important;
+        }
     }
 }
