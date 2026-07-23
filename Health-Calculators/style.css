@@ -1015,7 +1015,7 @@ select:focus {
         right: var(--spacing-md);
         z-index: 100;
  
-        background-color: rgba(255, 255, 255, 0.75);
+        background-color: rgb(255 255 255 / 55%);
         backdrop-filter: blur(12px);
         -webkit-backdrop-filter: blur(12px);
         border-bottom: 1px solid rgba(229, 231, 235, 0.5);
@@ -1035,7 +1035,7 @@ select:focus {
     /* Dark mode adjustment */
     body.dark-mode .mobile-header,
     html.dark-mode .mobile-header {
-        background-color: rgba(31, 41, 55, 0.75);
+        background-color: rgb(31 41 55 / 55%);
         border-bottom-color: rgba(55, 65, 81, 0.5);
     }
 
