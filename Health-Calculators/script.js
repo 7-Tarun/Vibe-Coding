@@ -300,6 +300,109 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
+    // --- Lean Body Mass Calculator Logic ---
+    const calcLbmBtn = document.getElementById('calc-lbm-btn');
+
+    if (calcLbmBtn) {
+        calcLbmBtn.addEventListener('click', () => {
+            const weight = parseFloat(document.getElementById('lbm-weight').value);
+            const bodyFat = parseFloat(document.getElementById('lbm-body-fat').value);
+
+            if (!weight || !bodyFat || weight <= 0 || bodyFat <= 0) {
+                alert('Please enter valid positive values for weight and body fat percentage.');
+                return;
+            } else if (weight < 20 || weight > 500) {
+                alert('Weight must be between 20 and 500 kg.');
+                return;
+            } else if (bodyFat >= 100) {
+                alert('Body fat percentage must be less than 100%.');
+                return;
+            }
+
+            const lbm = weight * (1 - (bodyFat / 100));
+            const resultBox = document.getElementById('lbm-result');
+            document.getElementById('lbm-value').innerText = lbm.toFixed(1).toLocaleString();
+            resultBox.classList.remove('hidden');
+        });
+    }
+
+    // --- FFMI Calculator Logic ---
+    const calcFfmiBtn = document.getElementById('calc-ffmi-btn');
+
+    if (calcFfmiBtn) {
+        calcFfmiBtn.addEventListener('click', () => {
+            const weight = parseFloat(document.getElementById('ffmi-weight').value);
+            const bodyFat = parseFloat(document.getElementById('ffmi-body-fat').value);
+            const heightCm = parseFloat(document.getElementById('ffmi-height').value);
+
+            if (!weight || !bodyFat || !heightCm || weight <= 0 || bodyFat <= 0 || heightCm <= 0) {
+                alert('Please enter valid positive values for weight, body fat percentage, and height.');
+                return;
+            } else if (weight < 20 || weight > 500) {
+                alert('Weight must be between 20 and 500 kg.');
+                return;
+            } else if (bodyFat >= 100) {
+                alert('Body fat percentage must be less than 100%.');
+                return;
+            } else if (heightCm < 50 || heightCm > 250) {
+                alert('Height must be between 50 and 250 cm.');
+                return;
+            }
+
+            const ffm = weight * (1 - (bodyFat / 100));
+            const heightM = heightCm / 100;
+            const ffmi = ffm / (heightM * heightM);
+
+            const resultBox = document.getElementById('ffmi-result');
+            const interpretationBox = document.getElementById('ffmi-interpretation');
+            const interpretationText = document.getElementById('ffmi-interpretation-text');
+            document.getElementById('ffmi-value').innerText = ffmi.toFixed(1);
+            resultBox.classList.remove('hidden');
+            interpretationBox.classList.remove('hidden');
+
+            let interpretation = '';
+            if (ffmi < 18) {
+                interpretation = 'Your FFMI is on the lower side, which may suggest relatively lower lean mass for your height.';
+            } else if (ffmi < 20) {
+                interpretation = 'Your FFMI is within an average to above-average range for lean mass relative to height.';
+            } else {
+                interpretation = 'Your FFMI is high, which is often associated with a very lean and muscular physique.';
+            }
+
+            interpretationText.innerText = interpretation;
+        });
+    }
+
+    // --- Target Weight Calculator Logic ---
+    const calcTargetWeightBtn = document.getElementById('calc-target-weight-btn');
+
+    if (calcTargetWeightBtn) {
+        calcTargetWeightBtn.addEventListener('click', () => {
+            const heightCm = parseFloat(document.getElementById('target-height').value);
+            const targetBmi = parseFloat(document.getElementById('target-bmi').value);
+
+            if (!heightCm || !targetBmi || heightCm <= 0 || targetBmi <= 0) {
+                alert('Please enter valid positive values for height and target BMI.');
+                return;
+            } else if (heightCm < 50 || heightCm > 250) {
+                alert('Height must be between 50 and 250 cm.');
+                return;
+            } else if (targetBmi < 15 || targetBmi > 35) {
+                alert('Target BMI must be between 15 and 35.');
+                return;
+            }
+
+            const heightM = heightCm / 100;
+            const targetWeight = targetBmi * heightM * heightM;
+            const healthyMin = 18.5 * heightM * heightM;
+            const healthyMax = 24.9 * heightM * heightM;
+            const resultBox = document.getElementById('target-weight-result');
+            document.getElementById('target-weight-value').innerText = targetWeight.toFixed(1).toLocaleString();
+            document.getElementById('target-weight-range').innerText = `Healthy BMI range: ${healthyMin.toFixed(1)} to ${healthyMax.toFixed(1)} kg`;
+            resultBox.classList.remove('hidden');
+        });
+    }
+
     // --- BMR Calculator Logic ---
     const calcBmrBtn = document.getElementById('calc-bmr-btn');
 

@@ -221,8 +221,37 @@ body {
 /* --- Dashboard Hero Section --- */
 .hero-section {
     margin-bottom: var(--spacing-xl);
-    padding-bottom: var(--spacing-xl);
-    border-bottom: 1px solid var(--border-color);
+    padding: clamp(1.25rem, 2vw, 2rem);
+    border-radius: 24px;
+    border: 1px solid rgba(79, 70, 229, 0.16);
+    background: linear-gradient(135deg, rgba(79, 70, 229, 0.08), rgba(79, 70, 229, 0.02));
+    box-shadow: var(--shadow-sm);
+    position: relative;
+    overflow: hidden;
+}
+
+.hero-section::before {
+    content: "";
+    position: absolute;
+    inset: auto -30px -30px auto;
+    width: 180px;
+    height: 180px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(79, 70, 229, 0.18), transparent 70%);
+    pointer-events: none;
+}
+
+.hero-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.45rem 0.8rem;
+    border-radius: 999px;
+    background-color: rgba(79, 70, 229, 0.1);
+    color: var(--primary-main);
+    font-weight: 700;
+    font-size: 0.8rem;
+    margin-bottom: var(--spacing-md);
 }
 
 .hero-subtitle {
@@ -243,13 +272,41 @@ body {
 
 .hero-title .highlight {
     color: var(--primary-main);
-    /* Replaced green with your theme color */
 }
 
 .hero-desc {
-    font-size: 1.1rem;
+    font-size: 1.05rem;
     color: var(--text-secondary);
-    max-width: 600px;
+    max-width: 700px;
+    line-height: 1.7;
+}
+
+.hero-desc-mobile {
+    display: none;
+}
+
+.hero-highlights {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+    margin-top: 1.25rem;
+}
+
+.highlight-card {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.6rem;
+    padding: 0.7rem 0.95rem;
+    border-radius: 999px;
+    background-color: var(--bg-primary);
+    border: 1px solid var(--border-color);
+    color: var(--text-secondary);
+    box-shadow: var(--shadow-sm);
+    font-weight: 600;
+}
+
+.highlight-card i {
+    color: var(--primary-main);
 }
 
 /* --- Dashboard Tools Grid --- */
@@ -268,18 +325,36 @@ body {
 }
 
 .tool-card {
+    position: relative;
+    overflow: hidden;
     background-color: var(--bg-primary);
     border: 1px solid var(--border-color);
-    border-radius: 12px;
+    border-radius: 16px;
     padding: var(--spacing-lg);
     cursor: pointer;
     transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+}
+
+.tool-card::before {
+    content: "";
+    position: absolute;
+    inset: 0 auto auto 0;
+    width: 100%;
+    height: 4px;
+    background: linear-gradient(90deg, var(--primary-main), transparent);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.25s ease;
 }
 
 .tool-card:hover {
     transform: translateY(-5px);
     box-shadow: var(--shadow-lg);
     border-color: var(--primary-light);
+}
+
+.tool-card:hover::before {
+    transform: scaleX(1);
 }
 
 .card-header {
@@ -290,9 +365,15 @@ body {
 }
 
 .icon-large {
-    font-size: 1.8rem;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 46px;
+    height: 46px;
+    border-radius: 12px;
+    background: rgba(79, 70, 229, 0.12);
     color: var(--warning);
-    /* Adjust color if needed */
+    font-size: 1.4rem;
 }
 
 .badge {
@@ -338,8 +419,6 @@ body {
 }
 
 /* --- Forms & Input Fields --- */
-
-/* Yahan pe paste kar — style tag ke andar */
 .form-grid {
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -359,20 +438,28 @@ body {
     color: var(--text-secondary);
 }
 
-.input-group input {
-    padding: 12px;
+.input-group input,
+.input-group select {
+    padding: 12px 14px;
     border: 1px solid var(--border-color);
-    border-radius: 8px;
+    border-radius: 12px;
     font-size: 1rem;
-    background-color: var(--bg-secondary);
+    background-color: var(--bg-primary);
     color: var(--text-primary);
-    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease, transform 0.2s ease;
 }
 
-.input-group input:focus {
+.input-group input:hover,
+.input-group select:hover {
+    border-color: var(--primary-main);
+}
+
+.input-group input:focus,
+.input-group select:focus {
     outline: none;
     border-color: var(--primary-main);
     box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.1);
+    transform: translateY(-1px);
 }
 
 /* Remove spin buttons from number inputs - All Browsers */
@@ -426,13 +513,15 @@ input[type="number"]::-moz-number-spin-down {
 /* --- Result Box --- */
 .result-box {
     margin-top: var(--spacing-xl);
-    padding: var(--spacing-md);
-    background-color: var(--bg-sidebar);
-    border: 1px solid var(--border-color);
-    border-radius: 8px;
+    padding: 1rem 1.2rem;
+    background: linear-gradient(135deg, rgba(79, 70, 229, 0.08), rgba(16, 185, 129, 0.06));
+    border: 1px solid rgba(79, 70, 229, 0.16);
+    border-radius: 16px;
     display: flex;
     justify-content: space-between;
     align-items: center;
+    gap: 1rem;
+    box-shadow: var(--shadow-sm);
     animation: fadeIn 0.4s ease-in-out;
 }
 
@@ -440,11 +529,18 @@ input[type="number"]::-moz-number-spin-down {
     display: none;
 }
 
+.result-score h4 {
+    margin-bottom: 0.3rem;
+    color: var(--text-secondary);
+    font-size: 0.95rem;
+}
+
 .score-value {
-    font-size: 2.5rem;
+    font-size: 2.8rem;
     font-weight: 800;
-    color: var(--text-primary);
+    color: var(--primary-main);
     display: block;
+    line-height: 1;
 }
 
 .status-badge {
@@ -753,18 +849,26 @@ input[type="number"]::-moz-number-spin-down {
 
 /* --- Calculator Card UI (Updated for Floating Effect) --- */
 .calculator-card {
-    background-color: var(--bg-primary);
+    position: relative;
+    overflow: hidden;
+    background: linear-gradient(135deg, var(--bg-primary) 0%, rgba(79, 70, 229, 0.03) 100%);
     border: 1px solid var(--border-color);
-    border-radius: 16px;
-    /* Thoda aur smooth border radius */
+    border-radius: 20px;
     padding: var(--spacing-xl);
-
-    /* Floating Effect ke liye shadow aur centering */
     box-shadow: var(--shadow-lg);
-    max-width: 500px;
-    /* Width ko stretch hone se rokega */
+    max-width: 620px;
     margin: var(--spacing-lg) auto;
-    /* Top/Bottom margin dega aur horizontally center karega */
+}
+
+.calculator-card::before {
+    content: "";
+    position: absolute;
+    inset: -40px auto auto -40px;
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(79, 70, 229, 0.12), transparent 70%);
+    pointer-events: none;
 }
 
 /* --- Extra styling for TDEE Form Elements --- */
@@ -895,6 +999,29 @@ select:focus {
 }
 
 @media (max-width: 768px) {
+    .hero-section {
+        padding: 1rem;
+    }
+
+    .hero-title {
+        font-size: 2.2rem;
+    }
+
+    .hero-desc-desktop {
+        display: none;
+    }
+
+    .hero-desc-mobile {
+        display: block;
+    }
+
+    .hero-highlights {
+        display: none;
+    }
+
+    .calculator-card {
+        padding: 1.1rem;
+    }
 
     /* Mobile header ko show karein */
     .mobile-header {
@@ -987,11 +1114,6 @@ select:focus {
 
     .full-width {
         grid-column: span 1;
-    }
-
-    .hero-title {
-        font-size: 2.2rem;
-        /* Mobile par font chota karein */
     }
 
     /* Dark Mode mein Logo ka color override karna */

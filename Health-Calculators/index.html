@@ -12,9 +12,9 @@
         crossorigin="anonymous"></script>
     <meta name="title" content="Free Health Calculators for BMI, TDEE, BMR, Calories & More | HealthCalc">
     <meta name="description"
-        content="Use HealthCalc to calculate BMI, TDEE, BMR, daily calories, macros, water intake, protein needs, ideal weight, and body fat percentage with fast, free tools.">
+        content="Use HealthCalc to calculate BMI, TDEE, BMR, daily calories, macros, water intake, protein needs, ideal weight, target weight, body fat percentage, lean body mass, and FFMI with fast, free tools.">
     <meta name="keywords"
-        content="BMI calculator, TDEE calculator, BMR calculator, calorie calculator, macro calculator, body fat calculator, ideal weight calculator, protein calculator, water intake calculator">
+        content="BMI calculator, TDEE calculator, BMR calculator, calorie calculator, macro calculator, body fat calculator, ideal weight calculator, target weight calculator, protein calculator, water intake calculator, lean body mass calculator, FFMI calculator">
     <meta name="author" content="Tarun">
     <meta name="robots" content="index, follow">
     <link rel="canonical" href="https://7-tarun.github.io/Vibe-Coding/Health-Calculators/">
@@ -107,6 +107,24 @@
                             <span>Ideal Weight</span>
                         </a>
                     </li>
+                    <li class="nav-item" data-nav="lbm">
+                        <a href="#">
+                            <i class="fa-solid fa-dumbbell"></i>
+                            <span>Lean Body Mass</span>
+                        </a>
+                    </li>
+                    <li class="nav-item" data-nav="ffmi">
+                        <a href="#">
+                            <i class="fa-solid fa-fire"></i>
+                            <span>FFMI Calculator</span>
+                        </a>
+                    </li>
+                    <li class="nav-item" data-nav="target-weight">
+                        <a href="#">
+                            <i class="fa-solid fa-bullseye"></i>
+                            <span>Target Weight</span>
+                        </a>
+                    </li>
                     <li class="nav-item" data-nav="bodyfat">
                         <a href="#">
                             <i class="fa-solid fa-percentage"></i>
@@ -145,10 +163,28 @@
 
             <section id="dashboard" class="view-section active">
                 <div class="hero-section">
+                    <div class="hero-badge">
+                        <i class="fa-solid fa-shield-heart"></i>
+                        <span>Free, fast, and easy to use</span>
+                    </div>
                     <p class="hero-subtitle">FREE HEALTH & FITNESS CALCULATORS</p>
-                    <h1 class="hero-title">Calculate your body metrics with confidence.</h1>
-                    <p class="hero-desc">Use our free online tools to estimate BMI, TDEE, BMR, daily calories, macros, water, protein, ideal weight, and body fat percentage in seconds.
-                    </p>
+                    <h1 class="hero-title">Measure smarter <span class="highlight">with confidence.</span></h1>
+                    <p class="hero-desc hero-desc-desktop">Use our free online tools to estimate BMI, TDEE, BMR, Macros,Calories,and more in seconds.</p>
+                    <p class="hero-desc hero-desc-mobile">All your fitness calculators in one place—fast, free, and accurate.</p>
+                    <div class="hero-highlights">
+                        <div class="highlight-card">
+                            <i class="fa-solid fa-bolt"></i>
+                            <span>Instant results</span>
+                        </div>
+                        <div class="highlight-card">
+                            <i class="fa-solid fa-mobile-screen-button"></i>
+                            <span>Mobile friendly</span>
+                        </div>
+                        <div class="highlight-card">
+                            <i class="fa-solid fa-lock"></i>
+                            <span>Simple & private</span>
+                        </div>
+                    </div>
                 </div>
 
                 <div class="tools-section">
@@ -233,6 +269,36 @@
                             <h3>Ideal Weight Calculator</h3>
                             <p>Find your ideal weight range based on your height and gender.</p>
                             <span class="calc-link">Calculate Ideal Weight &rarr;</span>
+                        </div>
+
+                        <div class="tool-card" data-nav="lbm">
+                            <div class="card-header">
+                                <i class="fa-solid fa-dumbbell icon-large"></i>
+                                <span class="badge badge-detailed">DETAILED</span>
+                            </div>
+                            <h3>Lean Body Mass</h3>
+                            <p>Estimate the portion of your body weight that is not fat.</p>
+                            <span class="calc-link">Calculate LBM &rarr;</span>
+                        </div>
+
+                        <div class="tool-card" data-nav="ffmi">
+                            <div class="card-header">
+                                <i class="fa-solid fa-fire icon-large"></i>
+                                <span class="badge badge-advanced">ADVANCED</span>
+                            </div>
+                            <h3>FFMI Calculator</h3>
+                            <p>Measure your fat-free mass index to compare lean mass relative to height.</p>
+                            <span class="calc-link">Calculate FFMI &rarr;</span>
+                        </div>
+
+                        <div class="tool-card" data-nav="target-weight">
+                            <div class="card-header">
+                                <i class="fa-solid fa-bullseye icon-large"></i>
+                                <span class="badge badge-detailed">DETAILED</span>
+                            </div>
+                            <h3>Target Weight</h3>
+                            <p>Find a healthy weight target based on your height and preferred BMI.</p>
+                            <span class="calc-link">Calculate Target Weight &rarr;</span>
                         </div>
 
                         <div class="tool-card" data-nav="bodyfat">
@@ -1033,6 +1099,268 @@
                             <p>The Devine formula is a helpful estimate, especially for planning. However, you should
                                 adjust based on how you feel, your performance, and any guidance from your healthcare
                                 provider.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section id="lbm" class="view-section hidden">
+                <div class="header-text">
+                    <h1>Lean Body Mass Calculator</h1>
+                    <p>Estimate the weight of your body that is not fat based on your current weight and body fat percentage.</p>
+                </div>
+
+                <div class="calculator-card">
+                    <div class="form-grid">
+                        <div class="input-group full-width">
+                            <label for="lbm-weight">Weight (kg)</label>
+                            <input type="number" id="lbm-weight" placeholder="e.g., 70" min="20" max="500" required>
+                        </div>
+                        <div class="input-group full-width">
+                            <label for="lbm-body-fat">Body Fat (%)</label>
+                            <input type="number" id="lbm-body-fat" placeholder="e.g., 18" min="0" max="99.9" step="0.1" required>
+                        </div>
+                    </div>
+
+                    <button id="calc-lbm-btn" class="primary-btn">Calculate Lean Body Mass</button>
+
+                    <div id="lbm-result" class="result-box hidden" style="flex-direction: column; align-items: flex-start; gap: 10px;">
+                        <div class="result-score">
+                            <h4>Lean Body Mass</h4>
+                            <span id="lbm-value" class="score-value">--</span>
+                            <span style="font-size:1rem; color:var(--text-secondary)">kg</span>
+                        </div>
+                        <p id="lbm-note" style="font-size:0.9rem; color:var(--text-secondary);">This estimate shows how much of your body weight is lean mass.</p>
+                    </div>
+                </div>
+
+                <div class="seo-content">
+                    <div class="calculator-card info-card">
+                        <h3>What is Lean Body Mass?</h3>
+                        <p>Lean Body Mass (LBM) is the portion of your body weight that is not fat. It includes muscle, bones, organs, water, and other non-fat tissue. Tracking LBM helps you understand body composition beyond total scale weight.</p>
+                        <div class="formula-box">
+                            <strong>Lean Body Mass Formula</strong><br>
+                            <span>LBM = Weight × (1 − Body Fat ÷ 100)</span>
+                        </div>
+                    </div>
+                    <div class="calculator-card info-card">
+                        <h3>Why LBM Matters</h3>
+                        <div class="table-responsive">
+                            <table class="seo-table">
+                                <thead>
+                                    <tr>
+                                        <th>Benefit</th>
+                                        <th>Why It Helps</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>Muscle Tracking</td>
+                                        <td>Helps you monitor changes in muscle mass over time.</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Fitness Progress</td>
+                                        <td>Shows whether your body composition is improving even if the scale changes slowly.</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Nutrition Planning</td>
+                                        <td>Supports better calorie and protein planning for fat loss or muscle gain.</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <div class="calculator-card info-card">
+                        <h3>Frequently Asked Questions</h3>
+                        <div class="faq-item">
+                            <h4>1. Is Lean Body Mass the same as muscle mass?</h4>
+                            <p>No. LBM includes muscle, organs, bones, and water, so it is broader than muscle mass alone.</p>
+                        </div>
+                        <div class="faq-item">
+                            <h4>2. Can LBM increase even if my weight stays the same?</h4>
+                            <p>Yes. If you gain muscle while losing fat, your body weight may stay similar while your lean mass increases.</p>
+                        </div>
+                        <div class="faq-item">
+                            <h4>3. How accurate is this calculator?</h4>
+                            <p>It provides a good estimate based on your entered body fat percentage. For the best results, use a realistic body fat estimate.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section id="ffmi" class="view-section hidden">
+                <div class="header-text">
+                    <h1>FFMI Calculator</h1>
+                    <p>Calculate your Fat-Free Mass Index to estimate your lean mass relative to height.</p>
+                </div>
+
+                <div class="calculator-card">
+                    <div class="form-grid">
+                        <div class="input-group full-width">
+                            <label for="ffmi-weight">Weight (kg)</label>
+                            <input type="number" id="ffmi-weight" placeholder="e.g., 75" min="20" max="500" required>
+                        </div>
+                        <div class="input-group full-width">
+                            <label for="ffmi-body-fat">Body Fat (%)</label>
+                            <input type="number" id="ffmi-body-fat" placeholder="e.g., 15" min="0" max="99.9" step="0.1" required>
+                        </div>
+                        <div class="input-group full-width">
+                            <label for="ffmi-height">Height (cm)</label>
+                            <input type="number" id="ffmi-height" placeholder="e.g., 180" min="50" max="250" required>
+                        </div>
+                    </div>
+
+                    <button id="calc-ffmi-btn" class="primary-btn">Calculate FFMI</button>
+
+                    <div id="ffmi-result" class="result-box hidden" style="flex-direction: column; align-items: flex-start; gap: 10px;">
+                        <div class="result-score">
+                            <h4>Fat-Free Mass Index</h4>
+                            <span id="ffmi-value" class="score-value">--</span>
+                        </div>
+                        <p id="ffmi-note" style="font-size:0.9rem; color:var(--text-secondary);">This estimates your lean mass adjusted for height.</p>
+                    </div>
+
+                    <div id="ffmi-interpretation" class="calculator-card info-card hidden" style="margin: 1rem 0 0; padding: 1rem 1.2rem; max-width: none;">
+                        <h3>FFMI Interpretation</h3>
+                        <p id="ffmi-interpretation-text">Your result will appear here after calculation.</p>
+                    </div>
+                </div>
+
+                <div class="seo-content">
+                    <div class="calculator-card info-card">
+                        <h3>What is FFMI?</h3>
+                        <p>FFMI stands for Fat-Free Mass Index. It is a useful metric for comparing lean mass across people of different heights, especially in fitness and bodybuilding contexts.</p>
+                        <div class="formula-box">
+                            <strong>FFMI Formula</strong><br>
+                            <span>FFM = Weight × (1 − Body Fat ÷ 100)</span><br>
+                            <span>FFMI = FFM ÷ (Height in meters)²</span>
+                        </div>
+                    </div>
+                    <div class="calculator-card info-card">
+                        <h3>FFMI Reference</h3>
+                        <div class="table-responsive">
+                            <table class="seo-table">
+                                <thead>
+                                    <tr>
+                                        <th>Range</th>
+                                        <th>Interpretation</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>Below 18</td>
+                                        <td>Lower lean mass relative to height.</td>
+                                    </tr>
+                                    <tr>
+                                        <td>18–20</td>
+                                        <td>Average to above-average lean mass.</td>
+                                    </tr>
+                                    <tr>
+                                        <td>20+</td>
+                                        <td>High lean mass, often seen in advanced lifters.</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <div class="calculator-card info-card">
+                        <h3>Frequently Asked Questions</h3>
+                        <div class="faq-item">
+                            <h4>1. Is FFMI better than BMI?</h4>
+                            <p>Yes, for assessing body composition, because FFMI accounts for lean mass rather than treating all body weight equally.</p>
+                        </div>
+                        <div class="faq-item">
+                            <h4>2. Can FFMI be used for muscle gain tracking?</h4>
+                            <p>Yes. It is commonly used by athletes and gym-goers to track changes in lean mass over time.</p>
+                        </div>
+                        <div class="faq-item">
+                            <h4>3. Does FFMI require exact body fat?</h4>
+                            <p>It uses your estimated body fat percentage, so the result is only as accurate as that estimate.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section id="target-weight" class="view-section hidden">
+                <div class="header-text">
+                    <h1>Target Weight Calculator</h1>
+                    <p>Estimate a healthy weight target based on your height and your chosen BMI goal.</p>
+                </div>
+
+                <div class="calculator-card">
+                    <div class="form-grid">
+                        <div class="input-group full-width">
+                            <label for="target-height">Height (cm)</label>
+                            <input type="number" id="target-height" placeholder="e.g., 175" min="50" max="250" required>
+                        </div>
+                        <div class="input-group full-width">
+                            <label for="target-bmi">Target BMI</label>
+                            <input type="number" id="target-bmi" placeholder="e.g., 22.5" min="15" max="35" step="0.1" required>
+                        </div>
+                    </div>
+
+                    <button id="calc-target-weight-btn" class="primary-btn">Calculate Target Weight</button>
+
+                    <div id="target-weight-result" class="result-box hidden" style="flex-direction: column; align-items: flex-start; gap: 10px;">
+                        <div class="result-score">
+                            <h4>Target Weight</h4>
+                            <span id="target-weight-value" class="score-value">--</span>
+                            <span style="font-size:1rem; color:var(--text-secondary)">kg</span>
+                        </div>
+                        <p id="target-weight-note" style="font-size:0.9rem; color:var(--text-secondary);">This is an estimate based on your selected BMI goal.</p>
+                        <p id="target-weight-range" style="font-size:0.9rem; color:var(--text-secondary);">Healthy BMI range: -- to -- kg</p>
+                    </div>
+                </div>
+
+                <div class="seo-content">
+                    <div class="calculator-card info-card">
+                        <h3>What is Target Weight?</h3>
+                        <p>Target weight is a healthy body weight estimate based on a chosen BMI goal and your height. It is often used as a practical benchmark for fitness, nutrition, and body composition planning.</p>
+                        <div class="formula-box">
+                            <strong>Target Weight Formula</strong><br>
+                            <span>Target Weight = BMI × Height(m)²</span>
+                        </div>
+                    </div>
+                    <div class="calculator-card info-card">
+                        <h3>Why Target Weight Matters</h3>
+                        <div class="table-responsive">
+                            <table class="seo-table">
+                                <thead>
+                                    <tr>
+                                        <th>Use Case</th>
+                                        <th>Why It Helps</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>Weight Loss Planning</td>
+                                        <td>Gives a realistic goal for reaching a healthier body weight.</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Fitness Tracking</td>
+                                        <td>Helps compare your current weight against a healthy benchmark.</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Nutrition Goal Setting</td>
+                                        <td>Supports calorie and body composition planning.</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <div class="calculator-card info-card">
+                        <h3>Frequently Asked Questions</h3>
+                        <div class="faq-item">
+                            <h4>1. Is target weight the same as ideal weight?</h4>
+                            <p>They are similar, but target weight is often more flexible because you can choose your preferred BMI goal.</p>
+                        </div>
+                        <div class="faq-item">
+                            <h4>2. What BMI should I choose?</h4>
+                            <p>A common healthy target is around 18.5 to 24.9, though individual needs may differ based on build, muscle mass, and health goals.</p>
+                        </div>
+                        <div class="faq-item">
+                            <h4>3. Is this calculator accurate for everyone?</h4>
+                            <p>It provides a useful estimate, but your best target depends on body composition, fitness level, and personal health considerations.</p>
                         </div>
                     </div>
                 </div>
