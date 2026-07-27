@@ -176,6 +176,74 @@ body {
     box-shadow: var(--shadow-md);
 }
 
+/* --- Home Nav — same size, subtle distinct look --- */
+.nav-home a {
+    border-left: 3px solid var(--primary-light);
+    padding-left: calc(var(--spacing-md) - 3px);
+    background-color: rgba(79, 70, 229, 0.06);
+}
+
+.nav-home a i {
+    color: var(--primary-main);
+}
+
+.nav-home a:hover {
+    background-color: rgba(79, 70, 229, 0.1);
+    color: var(--primary-main);
+}
+
+.nav-home.active a {
+    background-color: rgba(79, 70, 229, 0.14);
+    color: var(--primary-dark);
+    box-shadow: none;
+    border-left-color: var(--primary-main);
+    font-weight: 600;
+}
+
+.nav-home.active a i {
+    color: var(--primary-main);
+}
+
+/* Section divider between Home & Calculators */
+.nav-section-divider {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-sm);
+    margin: var(--spacing-xs) 0 var(--spacing-sm);
+    padding: 0 var(--spacing-xs);
+}
+
+.nav-section-divider::before,
+.nav-section-divider::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: var(--border-color);
+}
+
+.nav-section-divider span {
+    font-size: 0.65rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--text-light);
+    white-space: nowrap;
+}
+
+body.dark-mode .nav-home a {
+    background-color: rgba(99, 102, 241, 0.1);
+}
+
+body.dark-mode .nav-home a:hover {
+    background-color: rgba(99, 102, 241, 0.16);
+}
+
+body.dark-mode .nav-home.active a {
+    background-color: rgba(99, 102, 241, 0.22);
+    color: #E0E7FF;
+    box-shadow: none;
+}
+
 /* Footer Navigation */
 .sidebar-footer {
     padding: var(--spacing-md);
