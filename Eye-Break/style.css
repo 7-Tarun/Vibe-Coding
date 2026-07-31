@@ -7,7 +7,8 @@
     --text-main: #FFFFFF;
     --text-muted: #AAAAAA;
     --text-meta: #666666;
-    --icon-bg: #111111; /* Pure black for icon container */
+    --icon-bg: #111111;
+    /* Pure black for icon container */
 }
 
 * {
@@ -43,7 +44,8 @@ body {
     background-color: var(--icon-bg);
     width: 48px;
     height: 48px;
-    border-radius: 12px; /* Squircle look */
+    border-radius: 12px;
+    /* Squircle look */
     display: flex;
     justify-content: center;
     align-items: center;
@@ -138,7 +140,7 @@ body {
     border-radius: 36px;
     background-color: #000;
     overflow: hidden;
-    box-shadow: 0 20px 40px rgba(0,0,0,0.6);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6);
     position: relative;
 }
 
@@ -160,15 +162,17 @@ body {
     width: 100%;
     height: 100%;
     object-fit: cover;
+    object-position: top;
 }
 
 /* --- SEO Placeholder --- */
-.seo-article-placeholder {
+.seo-article-content {
     padding: 60px 5%;
     max-width: 900px;
     margin: 0 auto;
     border-top: 1px solid #222;
-    min-height: 200px; /* Temporary height until content is added */
+    min-height: 200px;
+    /* Temporary height until content is added */
 }
 
 /* --- Desktop Layout (Media Query) --- */
@@ -177,10 +181,165 @@ body {
         grid-template-columns: 1fr 1fr;
         padding: 100px 5%;
     }
+
     .hero-content h1 {
         font-size: 3.5rem;
     }
+
     .tagline {
         font-size: 1.25rem;
     }
+}
+
+/* --- Hero Pills --- */
+.hero-pills {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-bottom: 22px;
+}
+
+.pill {
+    background-color: rgba(76, 175, 80, 0.12);
+    border: 1px solid rgba(76, 175, 80, 0.28);
+    color: #a8d5aa;
+    padding: 5px 14px;
+    border-radius: 999px;
+    font-size: 0.82rem;
+    font-weight: 600;
+    letter-spacing: 0.3px;
+}
+
+/* --- Smooth card hover on content blocks --- */
+.content-block {
+    transition: box-shadow 0.3s ease, transform 0.3s ease;
+}
+
+.content-block:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 40px 90px rgba(0, 0, 0, 0.28);
+}
+
+/* --- FAQ item separator --- */
+.faq-item+.faq-item {
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
+    padding-top: 22px;
+}
+
+/* --- Download button pulse glow animation --- */
+@keyframes pulse-glow {
+
+    0%,
+    100% {
+        box-shadow: 0 18px 50px rgba(76, 175, 80, 0.20);
+    }
+
+    50% {
+        box-shadow: 0 18px 60px rgba(76, 175, 80, 0.40);
+    }
+}
+
+.btn-download {
+    animation: pulse-glow 3s ease-in-out infinite;
+}
+
+/* --- Metadata dot separator spacing --- */
+.metadata {
+    letter-spacing: 0.3px;
+}
+
+/* --- SEO Content Sections --- */
+.seo-article-content {
+    padding: 60px 5%;
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+.section-heading {
+    font-size: 1.8rem;
+    margin-bottom: 20px;
+    color: var(--text-main);
+}
+
+.section-heading.divider {
+    border-top: 1px solid #222;
+    padding-top: 40px;
+}
+
+.section-text {
+    color: var(--text-muted);
+    font-size: 1rem;
+    margin-bottom: 18px;
+    line-height: 1.8;
+}
+
+.subheading {
+    font-size: 1.3rem;
+    margin: 28px 0 14px;
+    color: var(--accent-green);
+}
+
+.section-list {
+    list-style: none;
+    padding: 0;
+    margin-bottom: 20px;
+}
+
+.section-list li {
+    color: var(--text-muted);
+    padding: 8px 0 8px 20px;
+    position: relative;
+    line-height: 1.7;
+}
+
+.section-list li::before {
+    content: '✓';
+    position: absolute;
+    left: 0;
+    color: var(--accent-green);
+    font-weight: bold;
+}
+
+/* --- FAQ Styles --- */
+.faq-item {
+    padding: 18px 0;
+}
+
+.faq-question {
+    font-size: 1.1rem;
+    margin-bottom: 10px;
+    color: var(--text-main);
+}
+
+.faq-answer {
+    color: var(--text-muted);
+    line-height: 1.7;
+    font-size: 0.95rem;
+}
+
+/* --- Footer --- */
+.site-footer {
+    background-color: var(--bg-darker);
+    border-top: 1px solid #222;
+    padding: 40px 5%;
+    text-align: center;
+}
+
+.footer-links {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+    margin-bottom: 16px;
+}
+
+.footer-links a {
+    color: var(--text-muted);
+    text-decoration: none;
+    font-size: 0.9rem;
+    transition: color 0.3s ease;
+}
+
+.footer-links a:hover {
+    color: var(--accent-green);
 }

@@ -39,7 +39,7 @@ An Android app built around the scientifically-backed **20-20-20 rule** — ever
 - 🔕 Sound toggle — silent reminders for quiet spaces
 - 🔄 Runs in the background as a foreground service, even if you swipe the app away
 
-Requirements: Android 8.0+ · Size: ~1.33 MB
+Requirements: Android 8.0+ · Size: ~1.48 MB
 
 ---
 
